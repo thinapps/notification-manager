@@ -17,8 +17,10 @@ The app is intended as a notification settings overview, not a notification cont
 ## Current Scope
 
 - list launchable apps on the device
+- search apps by name or package name
 - open Android notification settings for a selected app
-- fall back to Android app details if direct notification settings are unavailable
+- open Android app info for a selected app
+- open system notification settings
 - avoid notification listener, accessibility, internet, storage, analytics, ads, account, and sync features
 
 ## Planned Scope
@@ -30,18 +32,15 @@ The app is intended as a notification settings overview, not a notification cont
 
 ## Project Status
 
-The repository has a basic Android/Kotlin app that lists launchable apps and opens Android notification settings for each app. The UI is intentionally minimal and the project does not include notification reading, notification listener services, account features, analytics, ads, or network access.
+The repository has a basic Android/Kotlin app that lists launchable apps, searches them locally, and opens Android notification settings or app info for each app. The UI is intentionally minimal and the project does not include notification reading, notification listener services, account features, analytics, ads, or network access.
 
 ## Changelog
 
 ### 0.1.0
-- initialized the repository with basic project notes
-- documented the intended notification-settings-helper scope
-- documented that notification contents are intentionally out of scope
-- added a minimal Android/Kotlin project shell
-- added basic app metadata, resources, backup rules, and launcher placeholders
-- added build, scope, privacy, permissions, and settings-link docs
+- added a minimal Android/Kotlin app shell for Notification Manager
+- added local launchable-app discovery without `QUERY_ALL_PACKAGES`
+- added app search by name or package name
+- added per-app notification settings and app-info shortcuts
+- added a system notification settings shortcut
+- documented the privacy, permission, scope, settings-link, and build setup
 - added a basic debug build workflow
-- added launchable-app discovery without `QUERY_ALL_PACKAGES`
-- added app notification settings deep links with app-details fallback
-- replaced the setup placeholder with a minimal app list screen
