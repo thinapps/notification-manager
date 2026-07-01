@@ -9,7 +9,7 @@ The initial Android project does not request sensitive runtime permissions.
 - no `QUERY_ALL_PACKAGES`
 - no internet permission
 - no storage permission
-- manifest package visibility is limited to launchable apps through an `ACTION_MAIN` / `CATEGORY_LAUNCHER` query
+- manifest package visibility is limited to launchable apps and the specific Android settings intents the app opens
 
 ## Future Permission Review
 
