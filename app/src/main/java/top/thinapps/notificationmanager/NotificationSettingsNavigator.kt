@@ -8,6 +8,12 @@ import android.provider.Settings
 class NotificationSettingsNavigator(
     private val activity: Activity
 ) {
+    fun openSystemNotificationSettings() {
+        if (!start(Intent(Settings.ACTION_NOTIFICATION_SETTINGS))) {
+            start(Intent(Settings.ACTION_SETTINGS))
+        }
+    }
+
     fun openAppNotificationSettings(packageName: String) {
         val notificationSettings = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
             putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
@@ -18,7 +24,7 @@ class NotificationSettingsNavigator(
         }
     }
 
-    private fun openAppDetails(packageName: String) {
+    fun openAppDetails(packageName: String) {
         val appDetails = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
             data = Uri.fromParts("package", packageName, null)
         }
