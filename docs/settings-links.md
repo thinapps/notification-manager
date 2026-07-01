@@ -1,11 +1,14 @@
 # Settings Links
 
-The main product path should be opening Android system settings screens instead of trying to control another app's notification behavior directly.
+The main product path is opening Android system settings screens instead of trying to control another app's notification behavior directly.
 
-## Planned Link Targets
+## Current Link Targets
 
-- app notification settings
-- app details settings
+- app notification settings through `Settings.ACTION_APP_NOTIFICATION_SETTINGS`
+- app details settings fallback through `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`
+
+## Future Link Targets
+
 - notification listener settings, only if an optional audit mode is added later
 - notification policy access settings, only if a future feature truly requires it
 
