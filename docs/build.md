@@ -1,35 +1,28 @@
 # Build
 
-Notification Manager is a small classic Android project using Gradle, Kotlin, and Android XML/resources.
+Notification Manager keeps the Android build setup intentionally small because it is a single-module utility app built through GitHub Actions.
 
-## Requirements
+## Gradle
 
-- Android Studio or command-line Android SDK
-- JDK 17
-- Android SDK platform for the configured `compileSdk`
+The project keeps the simple root `build.gradle` and `settings.gradle` layout because the repository has only one app module.
 
-## Local Build
+The repository does not commit Gradle wrapper files. The release workflow downloads Gradle 8.9 and generates the wrapper during the build, matching the current ThinApps utility app pattern.
 
-```bash
-gradle assembleDebug
-```
+## Release bundle
 
-## Release Build
+`.github/workflows/android-release.yml` builds a signed release AAB through a manual `workflow_dispatch` run.
 
-Release signing is configured through environment variables and a local keystore path that is not committed to the repository.
+The workflow expects these repository secrets:
 
-Required environment variables:
+- `RELEASE_KEYSTORE`
+- `RELEASE_STORE_PASSWORD`
+- `RELEASE_KEY_ALIAS`
+- `RELEASE_KEY_PASSWORD`
 
-- `KEYSTORE_PASSWORD`
-- `KEY_ALIAS`
-- `KEY_PASSWORD`
+## R8 and ProGuard
 
-The release keystore path is:
+R8 and ProGuard rules are not currently needed because release minification and resource shrinking are disabled in `app/build.gradle`.
 
-```text
-keystore/release.keystore
-```
+The app is small, has no reflection-heavy third-party SDKs, and does not need custom keep rules right now. Keeping an empty `proguard-rules.pro` file only adds confusion, so the file is intentionally absent.
 
-## Notes
-
-The repository does not include generated build outputs, local SDK config, keystores, or IDE metadata.
+If release minification is enabled later, add a new `app/proguard-rules.pro` file only when there are real keep rules to maintain.
