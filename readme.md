@@ -4,6 +4,16 @@ Privacy-friendly Android utility for reviewing app notification settings in one 
 
 The app is intended as a notification settings overview, not a notification content reader or background notification controller.
 
+## Documentation
+
+| Document | Description |
+| --- | --- |
+| [Build](docs/build.md) | Explains the basic Gradle project, local build command, and release signing assumptions. |
+| [Scope](docs/scope.md) | Defines the settings-helper product scope and what the app should not attempt to do. |
+| [Privacy](docs/privacy.md) | Explains the local-only privacy model and notification-content boundaries. |
+| [Permissions](docs/permissions.md) | Explains the initial no-sensitive-permissions setup and future permission review rules. |
+| [Settings Links](docs/settings-links.md) | Explains the planned Android system settings deep-link approach. |
+
 ## Planned Scope
 
 - show installed apps with their notification access/status where Android exposes it
@@ -14,7 +24,7 @@ The app is intended as a notification settings overview, not a notification cont
 
 ## Project Status
 
-This repository has only the basic project notes for now. Android project files, code, UI design, release signing, and build workflows have not been added yet.
+The repository now has a basic Android/Kotlin project shell with a placeholder launcher activity, basic resources, documentation, and a debug build workflow. Real notification-settings logic and app design have not been added yet.
 
 ## Changelog
 
@@ -22,3 +32,7 @@ This repository has only the basic project notes for now. Android project files,
 - initialized the repository with basic project notes
 - documented the intended notification-settings-helper scope
 - documented that notification contents are intentionally out of scope
+- added a minimal Android/Kotlin project shell
+- added basic app metadata, resources, backup rules, and launcher placeholders
+- added build, scope, privacy, permissions, and settings-link docs
+- added a basic debug build workflow
