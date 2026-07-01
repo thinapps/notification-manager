@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace 'top.thinapps.notificationmanager'
+    namespace "top.thinapps.notificationmanager"
     compileSdk 35
 
     defaultConfig {
-        applicationId 'top.thinapps.notificationmanager'
+        applicationId "top.thinapps.notificationmanager"
         minSdk 26
         targetSdk 35
         versionCode 1
-        versionName '0.1.0'
+        versionName "0.1.0"
     }
 
     signingConfigs {
