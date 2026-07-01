@@ -6,18 +6,17 @@ Notification Manager keeps the Android build setup intentionally small because i
 
 The project keeps the simple root `build.gradle` and `settings.gradle` layout because the repository has only one app module.
 
-The repository does not commit Gradle wrapper files. The release workflow downloads Gradle 8.9 and generates the wrapper during the build, matching the current ThinApps utility app pattern.
+The repository does not commit Gradle wrapper files. The GitHub Actions workflows download Gradle 8.9 and generate the wrapper during the build, matching the current ThinApps utility app pattern.
+
+## Debug APK
+
+`.github/workflows/android-debug.yml` builds a debug APK through a manual `workflow_dispatch` run. Use this workflow for first install testing because it does not need release signing values.
 
 ## Release bundle
 
 `.github/workflows/android-release.yml` builds a signed release AAB through a manual `workflow_dispatch` run.
 
-The workflow expects these repository secrets:
-
-- `RELEASE_KEYSTORE`
-- `RELEASE_STORE_PASSWORD`
-- `RELEASE_KEY_ALIAS`
-- `RELEASE_KEY_PASSWORD`
+The release workflow expects the same ThinApps release signing secrets used by the other Android utility apps.
 
 ## R8 and ProGuard
 
