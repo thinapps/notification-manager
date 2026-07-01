@@ -77,7 +77,7 @@ jobs:
       - name: Name release bundle
         run: |
           set -euo pipefail
-          VERSION_NAME=$(grep -m1 'versionName' app/build.gradle | sed -E "s/.*['\"]([^'\"]+)['\"].*/\1/")
+          VERSION_NAME=$(grep -m1 'versionName' app/build.gradle | sed -E 's/.*"([^"]+)".*/\1/')
           AAB_BASENAME="notification-manager-${VERSION_NAME}-release"
           AAB_FILE="${AAB_BASENAME}.aab"
           cp app/build/outputs/bundle/release/app-release.aab "$AAB_FILE"
