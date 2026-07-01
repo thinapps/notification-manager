@@ -4,8 +4,10 @@ The main product path is opening Android system settings screens instead of tryi
 
 ## Current Link Targets
 
+- system notification settings through `Settings.ACTION_NOTIFICATION_SETTINGS`
 - app notification settings through `Settings.ACTION_APP_NOTIFICATION_SETTINGS`
-- app details settings fallback through `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`
+- app details settings through `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`
+- general Android settings fallback through `Settings.ACTION_SETTINGS`
 
 ## Future Link Targets
 
