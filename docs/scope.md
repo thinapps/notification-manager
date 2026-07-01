@@ -7,7 +7,10 @@ The app should focus on settings visibility, explanations, and links into Androi
 ## Current Scope
 
 - list launchable apps on the device
+- search apps by display name or package name
 - open each app's Android notification settings
+- open each app's Android app info screen
+- open system notification settings
 - fall back to Android app details if a notification settings screen is unavailable
 
 ## Planned Scope
