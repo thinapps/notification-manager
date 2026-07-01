@@ -29,12 +29,35 @@
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/body_text_size" />
 
+        <Button
+            android:id="@+id/systemSettingsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_large"
+            android:text="@string/open_system_notifications" />
+
+        <EditText
+            android:id="@+id/searchInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_medium"
+            android:hint="@string/search_apps_hint"
+            android:inputType="text"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/countText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_medium"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/body_text_size" />
+
         <TextView
             android:id="@+id/emptyText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
-            android:text="@string/no_apps_found"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/body_text_size"
             android:visibility="gone" />
