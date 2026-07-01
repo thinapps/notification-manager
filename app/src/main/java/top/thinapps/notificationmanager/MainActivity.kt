@@ -33,12 +33,19 @@ class MainActivity : Activity() {
     private fun createAppRow(app: AppEntry): View {
         val row = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
+            background = getDrawable(R.drawable.app_row_background)
             setPadding(
                 resources.getDimensionPixelSize(R.dimen.app_row_padding),
                 resources.getDimensionPixelSize(R.dimen.app_row_padding),
                 resources.getDimensionPixelSize(R.dimen.app_row_padding),
                 resources.getDimensionPixelSize(R.dimen.app_row_padding)
             )
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                bottomMargin = resources.getDimensionPixelSize(R.dimen.space_medium)
+            }
         }
 
         row.addView(TextView(this).apply {
