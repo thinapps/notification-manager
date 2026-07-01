@@ -4,9 +4,15 @@ Notification Manager is intended to help users understand and clean up Android n
 
 The app should focus on settings visibility, explanations, and links into Android system settings. It should not promise to directly rewrite another app's notification behavior.
 
-## In Scope
+## Current Scope
 
-- app notification status overview
+- list launchable apps on the device
+- open each app's Android notification settings
+- fall back to Android app details if a notification settings screen is unavailable
+
+## Planned Scope
+
+- app notification status overview where Android exposes it safely
 - plain-English explanations of notification states
 - links to relevant Android notification settings screens
 - optional local-only auditing of notification frequency if the user explicitly grants notification access later
