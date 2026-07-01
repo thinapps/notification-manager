@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Notification Manager</string>
-    <string name="app_placeholder">Notification Manager setup placeholder</string>
+    <string name="home_summary">Review launchable apps and open Android notification settings for each one.</string>
+    <string name="no_apps_found">No launchable apps were found.</string>
+    <string name="open_notification_settings">Notification settings</string>
 </resources>
