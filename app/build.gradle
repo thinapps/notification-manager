@@ -17,10 +17,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('../keystore/release.keystore')
-            storePassword System.getenv('KEYSTORE_PASSWORD')
-            keyAlias System.getenv('KEY_ALIAS')
-            keyPassword System.getenv('KEY_PASSWORD')
+            storeFile file(project.findProperty('RELEASE_STORE_FILE'))
+            storePassword project.findProperty('RELEASE_STORE_PASSWORD')
+            keyAlias project.findProperty('RELEASE_KEY_ALIAS')
+            keyPassword project.findProperty('RELEASE_KEY_PASSWORD')
         }
     }
 
@@ -31,10 +31,18 @@ android {
         }
 
         release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            minifyEnabled false
+            shrinkResources false
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
