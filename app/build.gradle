@@ -17,7 +17,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(project.findProperty('RELEASE_STORE_FILE'))
+            def releaseStoreFile = project.findProperty('RELEASE_STORE_FILE')
+            if (releaseStoreFile != null) {
+                storeFile file(releaseStoreFile)
+            }
             storePassword project.findProperty('RELEASE_STORE_PASSWORD')
             keyAlias project.findProperty('RELEASE_KEY_ALIAS')
             keyPassword project.findProperty('RELEASE_KEY_PASSWORD')
