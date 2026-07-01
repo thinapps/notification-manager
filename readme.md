@@ -8,7 +8,7 @@ The app is intended as a notification settings overview, not a notification cont
 
 | Document | Description |
 | --- | --- |
-| [Build](docs/build.md) | Explains the basic Gradle project, release workflow, signing, R8, and ProGuard choices. |
+| [Build](docs/build.md) | Explains the basic Gradle project, debug and release workflows, signing, R8, and ProGuard choices. |
 | [Scope](docs/scope.md) | Defines the settings-helper product scope and what the app should not attempt to do. |
 | [Privacy](docs/privacy.md) | Explains the local-only privacy model and notification-content boundaries. |
 | [Permissions](docs/permissions.md) | Explains the initial no-sensitive-permissions setup and future permission review rules. |
@@ -42,5 +42,5 @@ The repository has a basic Android/Kotlin app that lists launchable apps, search
 - added app search by name or package name
 - added per-app notification settings and app-info shortcuts
 - added a system notification settings shortcut
-- added a manual signed release AAB workflow
+- added manual debug APK and signed release AAB workflows
 - documented the privacy, permission, scope, settings-link, and build setup
