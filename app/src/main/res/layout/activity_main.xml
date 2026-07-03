@@ -123,6 +123,50 @@
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
 
+            <TextView
+                android:id="@+id/mediaVolumeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="@dimen/status_row_vertical_padding"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/body_text_size" />
+
+            <TextView
+                android:id="@+id/systemVolumeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="@dimen/status_row_vertical_padding"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/body_text_size" />
+
+            <TextView
+                android:id="@+id/accessibilityVolumeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="@dimen/status_row_vertical_padding"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/body_text_size" />
+
+            <TextView
+                android:id="@+id/keypadToneVolumeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="@dimen/status_row_vertical_padding"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/body_text_size" />
+
             <LinearLayout
                 android:id="@+id/deviceStatusButtonRow"
                 android:layout_width="match_parent"
