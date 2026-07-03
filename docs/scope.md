@@ -6,7 +6,7 @@ The app should focus on settings visibility, explanations, and links into Androi
 
 ## Current Scope
 
-- show read-only device sound mode, Do Not Disturb mode, ring volume, notification volume, alarm volume, and call volume
+- show read-only device sound mode, Do Not Disturb mode, ring volume, notification volume, alarm volume, call volume, media volume, system volume, accessibility volume, and keypad tone volume
 - list launchable apps on the device
 - search apps by display name or package name
 - open each app's Android notification settings
@@ -18,6 +18,7 @@ The app should focus on settings visibility, explanations, and links into Androi
 ## Planned Scope
 
 - app notification status overview where Android exposes it safely
+- fixed-volume-policy status, if it proves useful and reliable enough for a later version
 - plain-English explanations of notification states
 - links to relevant Android notification settings screens
 - optional local-only auditing of notification frequency if the user explicitly grants notification access later
