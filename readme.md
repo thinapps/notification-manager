@@ -17,7 +17,7 @@ The app is intended as a notification settings overview, not a notification cont
 
 ## Current Scope
 
-- show read-only device sound mode, Do Not Disturb mode, ring volume, and notification volume
+- show read-only device sound mode, Do Not Disturb mode, ring volume, notification volume, alarm volume, and call volume
 - list launchable apps on the device
 - search apps by name or package name
 - open Android notification settings for a selected app
@@ -38,6 +38,11 @@ The app is intended as a notification settings overview, not a notification cont
 The repository has a basic Android/Kotlin app that shows read-only device notification status, lists launchable apps, searches them locally, and opens Android notification settings or app info for each app. The UI is intentionally minimal and the project does not include notification reading, notification listener services, Notification Policy access, account features, analytics, ads, or network access.
 
 ## Changelog
+
+### 0.2.1
+- added read-only alarm volume and call volume rows to the device status card
+- made the new alarm and call volume rows clickable and routed them to Android sound settings
+- kept all device-wide controls read-only with no new permissions or toggles
 
 ### 0.2.0
 - added a read-only device status card for sound mode, Do Not Disturb mode, ring volume, and notification volume
