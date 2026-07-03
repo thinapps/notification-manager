@@ -6,7 +6,7 @@ The app should focus on settings visibility, explanations, and links into Androi
 
 ## Current Scope
 
-- show read-only device sound mode, Do Not Disturb mode, ring volume, and notification volume
+- show read-only device sound mode, Do Not Disturb mode, ring volume, notification volume, alarm volume, and call volume
 - list launchable apps on the device
 - search apps by display name or package name
 - open each app's Android notification settings
