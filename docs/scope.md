@@ -4,6 +4,10 @@ Notification Manager is intended to help users understand and clean up Android n
 
 The app should focus on settings visibility, explanations, and links into Android system settings. It should not promise to directly rewrite another app's notification behavior.
 
+## Current Implementation Status
+
+The current repository has a basic Android/Kotlin app that shows read-only device notification status, lists launchable apps, searches them locally, and opens Android notification settings or app info for each app. The UI is intentionally minimal and does not include notification reading, notification listener services, Notification Policy access, account features, analytics, ads, or network access.
+
 ## Current Scope
 
 - show read-only device sound mode, Do Not Disturb mode, ring volume, notification volume, alarm volume, call volume, media volume, system volume, accessibility volume, and keypad tone volume
@@ -32,6 +36,6 @@ The app should focus on settings visibility, explanations, and links into Androi
 - requesting Notification Policy access just to show status
 - reading notification message contents by default
 - uploading notification data
-- storing OTPs, private messages, or other sensitive notification text
+- storing sensitive notification text
 - changing another app's notification channel settings directly
 - acting as an accessibility-based notification controller
