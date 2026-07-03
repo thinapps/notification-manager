@@ -64,6 +64,12 @@ Keypad tone volume maps to Android's DTMF stream. It is labeled in plain English
 
 Assistant volume is not included because `AudioManager.STREAM_ASSISTANT` is newer than this app's current compile SDK target. Fixed-volume-policy status is intentionally saved for a later version.
 
+## Device Status Layout
+
+Device status rows use a simple label and value layout. Labels stay on the left and values are right-aligned so percentages and raw stream values are easier to scan.
+
+Rows are separated by subtle inset divider lines. The section should still feel like a soft list, not a table or grid.
+
 ## Settings Links
 
 The device status text rows are informational only and are not clickable.
