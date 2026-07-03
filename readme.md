@@ -40,6 +40,11 @@ The repository has a basic Android/Kotlin app that shows read-only device notifi
 
 ## Changelog
 
+### 0.2.2
+- split device status rows into left labels and right-aligned values for easier scanning
+- added subtle inset divider lines between device status rows without turning the section into a table
+- kept device status rows informational only, with settings opened from the three stacked buttons
+
 ### 0.2.1
 - added read-only alarm volume, call volume, media volume, system volume, accessibility volume, and keypad tone volume rows to the device status card
 - kept device status text rows informational only, with settings opened from the stacked buttons instead of row taps
