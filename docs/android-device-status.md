@@ -68,6 +68,8 @@ Assistant volume is not included because `AudioManager.STREAM_ASSISTANT` is newe
 
 Device status rows use a simple label and value layout. Labels stay on the left and values are right-aligned so percentages and raw stream values are easier to scan.
 
+Labels use normal-weight secondary text so they stay quiet. Values use primary medium-weight text so the current state is easier to read without making the card feel heavy.
+
 Rows are separated by subtle divider lines aligned to the status text width. The section should still feel like a soft list, not a table or grid.
 
 ## Settings Links
