@@ -22,8 +22,9 @@ The app is intended as a notification settings overview, not a notification cont
 - search apps by name or package name
 - open Android notification settings for a selected app
 - open Android app info for a selected app
-- open system notification settings
 - open system sound and volume settings
+- open system Do Not Disturb settings
+- open system notification settings
 - avoid notification listener, Notification Policy access, internet, storage, analytics, ads, account, and sync features
 
 ## Planned Scope
@@ -38,6 +39,11 @@ The app is intended as a notification settings overview, not a notification cont
 The repository has a basic Android/Kotlin app that shows read-only device notification status, lists launchable apps, searches them locally, and opens Android notification settings or app info for each app. The UI is intentionally minimal and the project does not include notification reading, notification listener services, Notification Policy access, account features, analytics, ads, or network access.
 
 ## Changelog
+
+### 0.2.2
+- adds a third stacked device-status shortcut labeled Do Not Disturb Settings
+- routes the new Do Not Disturb Settings button to the same Android DND / Modes settings destination as the DND status row
+- keeps Do Not Disturb read-only with no Notification Policy access request or toggle
 
 ### 0.2.1
 - added read-only alarm volume, call volume, media volume, system volume, accessibility volume, and keypad tone volume rows to the device status card
