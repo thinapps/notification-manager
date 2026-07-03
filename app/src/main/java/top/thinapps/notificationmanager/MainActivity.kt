@@ -51,6 +51,18 @@ class MainActivity : Activity() {
         findViewById<TextView>(R.id.callVolumeText).setOnClickListener {
             settingsNavigator.openSoundSettings()
         }
+        findViewById<TextView>(R.id.mediaVolumeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
+        findViewById<TextView>(R.id.systemVolumeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
+        findViewById<TextView>(R.id.accessibilityVolumeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
+        findViewById<TextView>(R.id.keypadToneVolumeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
         findViewById<Button>(R.id.soundSettingsButton).setOnClickListener {
             settingsNavigator.openSoundSettings()
         }
@@ -85,6 +97,22 @@ class MainActivity : Activity() {
         findViewById<TextView>(R.id.callVolumeText).text = getString(
             R.string.status_call_volume,
             status.callVolume
+        )
+        findViewById<TextView>(R.id.mediaVolumeText).text = getString(
+            R.string.status_media_volume,
+            status.mediaVolume
+        )
+        findViewById<TextView>(R.id.systemVolumeText).text = getString(
+            R.string.status_system_volume,
+            status.systemVolume
+        )
+        findViewById<TextView>(R.id.accessibilityVolumeText).text = getString(
+            R.string.status_accessibility_volume,
+            status.accessibilityVolume
+        )
+        findViewById<TextView>(R.id.keypadToneVolumeText).text = getString(
+            R.string.status_keypad_tone_volume,
+            status.keypadToneVolume
         )
     }
 
