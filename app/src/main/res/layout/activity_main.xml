@@ -56,92 +56,316 @@
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/package_text_size" />
 
-            <TextView
-                android:id="@+id/soundModeText"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_medium"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/doNotDisturbText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_sound_mode_label"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/soundModeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_primary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/ringVolumeText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_do_not_disturb_label"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/doNotDisturbValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_secondary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/notificationVolumeText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_ring_volume_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/ringVolumeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_secondary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/alarmVolumeText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_notification_volume_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/notificationVolumeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_secondary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/callVolumeText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_alarm_volume_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/alarmVolumeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_secondary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/mediaVolumeText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_call_volume_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/callVolumeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_secondary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/systemVolumeText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_media_volume_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/mediaVolumeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_secondary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/accessibilityVolumeText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_system_volume_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/systemVolumeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_secondary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
 
-            <TextView
-                android:id="@+id/keypadToneVolumeText"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_accessibility_volume_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/accessibilityVolumeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
+                android:background="@color/status_row_divider" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/status_row_vertical_padding"
-                android:textColor="@color/text_secondary"
-                android:textSize="@dimen/body_text_size" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_keypad_tone_volume_label"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+
+                <TextView
+                    android:id="@+id/keypadToneVolumeValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/body_text_size" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/deviceStatusButtonRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_medium"
+                android:layout_marginTop="@dimen/space_large"
                 android:orientation="vertical">
 
                 <Button
