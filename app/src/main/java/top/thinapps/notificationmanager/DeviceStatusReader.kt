@@ -11,7 +11,9 @@ data class DeviceStatus(
     val ringVolume: String,
     val notificationVolume: String,
     val alarmVolume: String,
-    val callVolume: String
+    val callVolume: String,
+    val mediaVolume: String,
+    val systemVolume: String
 )
 
 class DeviceStatusReader(
@@ -27,7 +29,9 @@ class DeviceStatusReader(
             ringVolume = readVolume(AudioManager.STREAM_RING),
             notificationVolume = readVolume(AudioManager.STREAM_NOTIFICATION),
             alarmVolume = readVolume(AudioManager.STREAM_ALARM),
-            callVolume = readVolume(AudioManager.STREAM_VOICE_CALL)
+            callVolume = readVolume(AudioManager.STREAM_VOICE_CALL),
+            mediaVolume = readVolume(AudioManager.STREAM_MUSIC),
+            systemVolume = readVolume(AudioManager.STREAM_SYSTEM)
         )
     }
 
