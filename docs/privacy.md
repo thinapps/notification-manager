@@ -19,6 +19,8 @@ The device status card reads local Android system state only:
 - Do Not Disturb interruption filter
 - ring volume
 - notification volume
+- alarm volume
+- call volume
 
 This status is displayed on screen and is not stored, synced, uploaded, or sent anywhere.
 
