@@ -19,6 +19,10 @@ Do Not Disturb status and the Do Not Disturb settings shortcut are read-only fro
 
 Device status text rows are informational only. Sound, Do Not Disturb, and notification settings are opened from the three stacked buttons in the device status card. Android does not expose stable public deep links for each individual OEM volume slider, so the app should avoid private activity names and manufacturer-specific routes.
 
+## Button Feedback
+
+Settings and app action buttons use standard Android haptic feedback on tap. The feedback is small, local, and does not require any permission.
+
 ## Future Link Targets
 
 - notification listener settings, only if an optional audit mode is added later
