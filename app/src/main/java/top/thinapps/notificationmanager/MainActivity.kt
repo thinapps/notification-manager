@@ -21,7 +21,7 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         allApps = appsRepository.getLaunchableApps()
-        setupDeviceStatusClickTargets()
+        setupDeviceStatusButtons()
         setupSearch()
         renderDeviceStatus()
         renderApps(allApps)
@@ -32,37 +32,7 @@ class MainActivity : Activity() {
         renderDeviceStatus()
     }
 
-    private fun setupDeviceStatusClickTargets() {
-        findViewById<TextView>(R.id.soundModeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
-        findViewById<TextView>(R.id.doNotDisturbText).setOnClickListener {
-            settingsNavigator.openDoNotDisturbSettings()
-        }
-        findViewById<TextView>(R.id.ringVolumeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
-        findViewById<TextView>(R.id.notificationVolumeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
-        findViewById<TextView>(R.id.alarmVolumeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
-        findViewById<TextView>(R.id.callVolumeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
-        findViewById<TextView>(R.id.mediaVolumeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
-        findViewById<TextView>(R.id.systemVolumeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
-        findViewById<TextView>(R.id.accessibilityVolumeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
-        findViewById<TextView>(R.id.keypadToneVolumeText).setOnClickListener {
-            settingsNavigator.openSoundSettings()
-        }
+    private fun setupDeviceStatusButtons() {
         findViewById<Button>(R.id.soundSettingsButton).setOnClickListener {
             settingsNavigator.openSoundSettings()
         }
