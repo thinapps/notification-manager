@@ -45,6 +45,12 @@ class MainActivity : Activity() {
         findViewById<TextView>(R.id.notificationVolumeText).setOnClickListener {
             settingsNavigator.openSoundSettings()
         }
+        findViewById<TextView>(R.id.alarmVolumeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
+        findViewById<TextView>(R.id.callVolumeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
         findViewById<Button>(R.id.soundSettingsButton).setOnClickListener {
             settingsNavigator.openSoundSettings()
         }
@@ -71,6 +77,14 @@ class MainActivity : Activity() {
         findViewById<TextView>(R.id.notificationVolumeText).text = getString(
             R.string.status_notification_volume,
             status.notificationVolume
+        )
+        findViewById<TextView>(R.id.alarmVolumeText).text = getString(
+            R.string.status_alarm_volume,
+            status.alarmVolume
+        )
+        findViewById<TextView>(R.id.callVolumeText).text = getString(
+            R.string.status_call_volume,
+            status.callVolume
         )
     }
 
