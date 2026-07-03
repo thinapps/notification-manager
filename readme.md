@@ -19,7 +19,7 @@ The app is intended as a notification settings overview, not a notification cont
 
 ### 0.2.2
 - split device status rows into left labels and right-aligned values for easier scanning
-- added subtle inset divider lines between device status rows without turning the section into a table
+- added subtle divider lines aligned with the status text without turning the section into a table
 - added a shared dark button style for settings and app action buttons
 - kept device status rows informational only, with settings opened from the three stacked buttons
 
