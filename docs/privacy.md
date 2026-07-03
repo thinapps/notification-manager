@@ -21,6 +21,10 @@ The device status card reads local Android system state only:
 - notification volume
 - alarm volume
 - call volume
+- media volume
+- system volume
+- accessibility volume
+- keypad tone volume
 
 This status is displayed on screen and is not stored, synced, uploaded, or sent anywhere.
 
