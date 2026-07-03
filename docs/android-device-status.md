@@ -53,12 +53,20 @@ Notification Manager currently reads:
 - notification volume from `AudioManager.STREAM_NOTIFICATION`
 - alarm volume from `AudioManager.STREAM_ALARM`
 - call volume from `AudioManager.STREAM_VOICE_CALL`
+- media volume from `AudioManager.STREAM_MUSIC`
+- system volume from `AudioManager.STREAM_SYSTEM`
+- accessibility volume from `AudioManager.STREAM_ACCESSIBILITY`
+- keypad tone volume from `AudioManager.STREAM_DTMF`
 
 The app shows each as a percentage plus the raw stream value, such as `60% (9/15)`.
 
 Android devices and OEM skins may link or separate some volume streams. The app should display what Android exposes, not pretend all devices behave the same.
 
 Call volume may be more meaningful while a call-capable route is active, but Android still exposes the stream value. The app labels it plainly as call volume and keeps it read-only.
+
+Keypad tone volume maps to Android's DTMF stream. It is labeled in plain English because most users do not know the DTMF acronym.
+
+Assistant volume is not included because `AudioManager.STREAM_ASSISTANT` is newer than this app's current compile SDK target. Fixed-volume-policy status is intentionally saved for a later version.
 
 ## Settings Links
 
@@ -69,6 +77,10 @@ The status card links each status row to the closest relevant Android settings s
 - notification volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
 - alarm volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
 - call volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- media volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- system volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- accessibility volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- keypad tone volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
 - Do Not Disturb opens Android DND / Modes settings via `android.settings.ZEN_MODE_SETTINGS`, falling back to notification settings if unavailable
 
 The card also includes Sound settings and Notification settings buttons for clarity.
