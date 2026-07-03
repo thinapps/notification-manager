@@ -7,7 +7,7 @@
     <dimen name="app_row_padding">16dp</dimen>
     <dimen name="status_row_vertical_padding">6dp</dimen>
     <dimen name="status_row_value_gap">12dp</dimen>
-    <dimen name="status_row_divider_inset">4dp</dimen>
+    <dimen name="status_row_divider_inset">0dp</dimen>
     <dimen name="title_text_size">24sp</dimen>
     <dimen name="body_text_size">15sp</dimen>
     <dimen name="app_label_text_size">16sp</dimen>
