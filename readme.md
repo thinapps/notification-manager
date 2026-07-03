@@ -15,29 +15,6 @@ The app is intended as a notification settings overview, not a notification cont
 | [Permissions](docs/permissions.md) | Explains the no-sensitive-permissions setup and future permission review rules. |
 | [Settings Links](docs/settings-links.md) | Explains the Android system settings deep-link approach. |
 
-## Current Scope
-
-- show read-only device sound mode, Do Not Disturb mode, ring volume, notification volume, alarm volume, call volume, media volume, system volume, accessibility volume, and keypad tone volume
-- list launchable apps on the device
-- search apps by name or package name
-- open Android notification settings for a selected app
-- open Android app info for a selected app
-- open system sound and volume settings
-- open system Do Not Disturb settings
-- open system notification settings
-- avoid notification listener, Notification Policy access, internet, storage, analytics, ads, account, and sync features
-
-## Planned Scope
-
-- show app notification status where Android exposes it safely
-- explain common notification states such as allowed, blocked, silent, sound, vibration, badges, lock screen, and pop-up behavior
-- link users to Android system settings for each app or notification area
-- optionally add local-only notification frequency auditing later if the user explicitly grants notification access
-
-## Project Status
-
-The repository has a basic Android/Kotlin app that shows read-only device notification status, lists launchable apps, searches them locally, and opens Android notification settings or app info for each app. The UI is intentionally minimal and the project does not include notification reading, notification listener services, Notification Policy access, account features, analytics, ads, or network access.
-
 ## Changelog
 
 ### 0.2.2
