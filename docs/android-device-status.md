@@ -83,7 +83,9 @@ The status card links each status row to the closest relevant Android settings s
 - keypad tone volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
 - Do Not Disturb opens Android DND / Modes settings via `android.settings.ZEN_MODE_SETTINGS`, falling back to notification settings if unavailable
 
-The card also includes Sound settings and Notification settings buttons for clarity.
+The card also includes a Sound & volume button and a Notification settings button for clarity.
+
+Android does not expose reliable public deep links to each individual OEM volume slider. The app uses the closest stable public settings destination instead of private or OEM-specific sub-settings.
 
 These are shortcuts only. The app does not change device status itself.
 
