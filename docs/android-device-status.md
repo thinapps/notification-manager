@@ -51,18 +51,24 @@ Notification Manager currently reads:
 
 - ring volume from `AudioManager.STREAM_RING`
 - notification volume from `AudioManager.STREAM_NOTIFICATION`
+- alarm volume from `AudioManager.STREAM_ALARM`
+- call volume from `AudioManager.STREAM_VOICE_CALL`
 
 The app shows each as a percentage plus the raw stream value, such as `60% (9/15)`.
 
-Android devices and OEM skins may link or separate ring and notification volume. The app should display what Android exposes, not pretend all devices behave the same.
+Android devices and OEM skins may link or separate some volume streams. The app should display what Android exposes, not pretend all devices behave the same.
+
+Call volume may be more meaningful while a call-capable route is active, but Android still exposes the stream value. The app labels it plainly as call volume and keeps it read-only.
 
 ## Settings Links
 
-The 0.2.0 status card links each status row to the closest relevant Android settings screen:
+The status card links each status row to the closest relevant Android settings screen:
 
 - sound mode opens Android sound settings via `android.settings.SOUND_SETTINGS`
 - ring volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
 - notification volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- alarm volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- call volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
 - Do Not Disturb opens Android DND / Modes settings via `android.settings.ZEN_MODE_SETTINGS`, falling back to notification settings if unavailable
 
 The card also includes Sound settings and Notification settings buttons for clarity.
