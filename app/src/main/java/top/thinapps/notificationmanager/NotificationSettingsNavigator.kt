@@ -9,7 +9,7 @@ class NotificationSettingsNavigator(
     private val activity: Activity
 ) {
     fun openSystemNotificationSettings() {
-        if (!start(Intent(Settings.ACTION_NOTIFICATION_SETTINGS))) {
+        if (!start(Intent(ACTION_NOTIFICATION_SETTINGS))) {
             start(Intent(Settings.ACTION_SETTINGS))
         }
     }
@@ -43,5 +43,9 @@ class NotificationSettingsNavigator(
         } catch (_: RuntimeException) {
             false
         }
+    }
+
+    private companion object {
+        const val ACTION_NOTIFICATION_SETTINGS = "android.settings.NOTIFICATION_SETTINGS"
     }
 }
