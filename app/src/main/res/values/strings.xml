@@ -8,6 +8,8 @@
     <string name="status_do_not_disturb">Do Not Disturb: %1$s</string>
     <string name="status_ring_volume">Ring volume: %1$s</string>
     <string name="status_notification_volume">Notification volume: %1$s</string>
+    <string name="status_alarm_volume">Alarm volume: %1$s</string>
+    <string name="status_call_volume">Call volume: %1$s</string>
     <string name="open_sound_settings">Sound settings</string>
     <string name="search_apps_hint">Search apps</string>
     <string name="open_system_notifications">Notification settings</string>
