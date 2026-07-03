@@ -10,6 +10,9 @@
             <action android:name="android.settings.NOTIFICATION_SETTINGS" />
         </intent>
         <intent>
+            <action android:name="android.settings.SOUND_SETTINGS" />
+        </intent>
+        <intent>
             <action android:name="android.settings.APP_NOTIFICATION_SETTINGS" />
         </intent>
         <intent>
