@@ -13,4 +13,7 @@
     <dimen name="app_label_text_size">16sp</dimen>
     <dimen name="package_text_size">12sp</dimen>
     <dimen name="button_row_gap">8dp</dimen>
+    <dimen name="button_corner_radius">8dp</dimen>
+    <dimen name="button_min_height">48dp</dimen>
+    <dimen name="button_horizontal_padding">12dp</dimen>
 </resources>
