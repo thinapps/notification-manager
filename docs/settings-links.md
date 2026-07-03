@@ -5,7 +5,7 @@ The main product path is opening Android system settings screens instead of tryi
 ## Current Link Targets
 
 - system notification settings through the `android.settings.NOTIFICATION_SETTINGS` action string
-- system sound settings through the `android.settings.SOUND_SETTINGS` action string
+- system sound and volume settings through the `android.settings.SOUND_SETTINGS` action string
 - system Do Not Disturb / Modes settings through the `android.settings.ZEN_MODE_SETTINGS` action string, with notification settings fallback
 - app notification settings through `Settings.ACTION_APP_NOTIFICATION_SETTINGS`
 - app details settings through `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`
@@ -16,6 +16,8 @@ The main product path is opening Android system settings screens instead of tryi
 The app should link users to normal Android settings screens, not permission pages, unless a future feature clearly needs that permission.
 
 Do Not Disturb status is shown read-only in 0.2.0. The app intentionally does not link to Notification Policy access as a default path because that screen is for granting apps control over DND / Modes configuration, not merely helping users understand their current state.
+
+Individual volume rows route to the public Android sound settings destination. Android does not expose stable public deep links for each individual OEM volume slider, so the app should avoid private activity names and manufacturer-specific routes.
 
 ## Future Link Targets
 
