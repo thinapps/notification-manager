@@ -61,9 +61,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_medium"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/body_text_size" />
@@ -72,9 +69,6 @@
                 android:id="@+id/doNotDisturbText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/body_text_size" />
@@ -83,9 +77,6 @@
                 android:id="@+id/ringVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
@@ -94,9 +85,6 @@
                 android:id="@+id/notificationVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
@@ -105,9 +93,6 @@
                 android:id="@+id/alarmVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
@@ -116,9 +101,6 @@
                 android:id="@+id/callVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
@@ -127,9 +109,6 @@
                 android:id="@+id/mediaVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
@@ -138,9 +117,6 @@
                 android:id="@+id/systemVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
@@ -149,9 +125,6 @@
                 android:id="@+id/accessibilityVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
@@ -160,9 +133,6 @@
                 android:id="@+id/keypadToneVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
                 android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
