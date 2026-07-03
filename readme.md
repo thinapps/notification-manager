@@ -41,7 +41,7 @@ The repository has a basic Android/Kotlin app that shows read-only device notifi
 
 ### 0.2.0
 - added a read-only device status card for sound mode, Do Not Disturb mode, ring volume, and notification volume
-- made device status rows open the closest relevant Android settings screen
+- made all device status rows clickable and routed them to the closest relevant Android settings screen
 - added a sound settings shortcut beside the existing notification settings shortcut
 - kept device-wide controls read-only with no DND toggles or Notification Policy access request
 
