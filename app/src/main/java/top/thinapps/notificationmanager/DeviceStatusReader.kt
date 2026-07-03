@@ -13,7 +13,9 @@ data class DeviceStatus(
     val alarmVolume: String,
     val callVolume: String,
     val mediaVolume: String,
-    val systemVolume: String
+    val systemVolume: String,
+    val accessibilityVolume: String,
+    val dtmfVolume: String
 )
 
 class DeviceStatusReader(
@@ -31,7 +33,9 @@ class DeviceStatusReader(
             alarmVolume = readVolume(AudioManager.STREAM_ALARM),
             callVolume = readVolume(AudioManager.STREAM_VOICE_CALL),
             mediaVolume = readVolume(AudioManager.STREAM_MUSIC),
-            systemVolume = readVolume(AudioManager.STREAM_SYSTEM)
+            systemVolume = readVolume(AudioManager.STREAM_SYSTEM),
+            accessibilityVolume = readVolume(AudioManager.STREAM_ACCESSIBILITY),
+            dtmfVolume = readVolume(AudioManager.STREAM_DTMF)
         )
     }
 
