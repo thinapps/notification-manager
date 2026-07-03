@@ -66,6 +66,9 @@ class MainActivity : Activity() {
         findViewById<Button>(R.id.soundSettingsButton).setOnClickListener {
             settingsNavigator.openSoundSettings()
         }
+        findViewById<Button>(R.id.doNotDisturbSettingsButton).setOnClickListener {
+            settingsNavigator.openDoNotDisturbSettings()
+        }
         findViewById<Button>(R.id.systemSettingsButton).setOnClickListener {
             settingsNavigator.openSystemNotificationSettings()
         }
