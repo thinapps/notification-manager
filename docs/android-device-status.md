@@ -58,10 +58,14 @@ Android devices and OEM skins may link or separate ring and notification volume.
 
 ## Settings Links
 
-The 0.2.0 status card links to:
+The 0.2.0 status card links each status row to the closest relevant Android settings screen:
 
-- Android sound settings via `android.settings.SOUND_SETTINGS`
-- Android notification settings via `android.settings.NOTIFICATION_SETTINGS`
+- sound mode opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- ring volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- notification volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- Do Not Disturb opens Android DND / Modes settings via `android.settings.ZEN_MODE_SETTINGS`, falling back to notification settings if unavailable
+
+The card also includes Sound settings and Notification settings buttons for clarity.
 
 These are shortcuts only. The app does not change device status itself.
 
@@ -69,6 +73,6 @@ These are shortcuts only. The app does not change device status itself.
 
 Do Not Disturb control requires Notification Policy access.
 
-Notification Manager should not request Notification Policy access just to show status. If a future version considers DND toggles or schedule management, that should be treated as a separate product decision with new docs, permissions review, and clear user-facing explanation.
+Notification Manager should not request Notification Policy access just to show status or link to DND settings. If a future version considers DND toggles or schedule management, that should be treated as a separate product decision with new docs, permissions review, and clear user-facing explanation.
 
 For now, DND is read-only.
