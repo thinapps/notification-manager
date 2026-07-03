@@ -20,7 +20,7 @@ The app is intended as a notification settings overview, not a notification cont
 ### 0.2.3
 - extended the device status divider lines so they align with the row text edges
 - made device status labels secondary gray and values primary medium-weight text for clearer scanning
-- added standard haptic feedback to settings and app action buttons
+- added standard haptic feedback and rounded ripple feedback to settings and app action buttons
 
 ### 0.2.2
 - split device status rows into left labels and right-aligned values for easier scanning
