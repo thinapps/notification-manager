@@ -47,46 +47,16 @@ class MainActivity : Activity() {
     private fun renderDeviceStatus() {
         val status = deviceStatusReader.read()
 
-        findViewById<TextView>(R.id.soundModeText).text = getString(
-            R.string.status_sound_mode,
-            status.soundMode
-        )
-        findViewById<TextView>(R.id.doNotDisturbText).text = getString(
-            R.string.status_do_not_disturb,
-            status.doNotDisturbMode
-        )
-        findViewById<TextView>(R.id.ringVolumeText).text = getString(
-            R.string.status_ring_volume,
-            status.ringVolume
-        )
-        findViewById<TextView>(R.id.notificationVolumeText).text = getString(
-            R.string.status_notification_volume,
-            status.notificationVolume
-        )
-        findViewById<TextView>(R.id.alarmVolumeText).text = getString(
-            R.string.status_alarm_volume,
-            status.alarmVolume
-        )
-        findViewById<TextView>(R.id.callVolumeText).text = getString(
-            R.string.status_call_volume,
-            status.callVolume
-        )
-        findViewById<TextView>(R.id.mediaVolumeText).text = getString(
-            R.string.status_media_volume,
-            status.mediaVolume
-        )
-        findViewById<TextView>(R.id.systemVolumeText).text = getString(
-            R.string.status_system_volume,
-            status.systemVolume
-        )
-        findViewById<TextView>(R.id.accessibilityVolumeText).text = getString(
-            R.string.status_accessibility_volume,
-            status.accessibilityVolume
-        )
-        findViewById<TextView>(R.id.keypadToneVolumeText).text = getString(
-            R.string.status_keypad_tone_volume,
-            status.keypadToneVolume
-        )
+        findViewById<TextView>(R.id.soundModeValueText).text = status.soundMode
+        findViewById<TextView>(R.id.doNotDisturbValueText).text = status.doNotDisturbMode
+        findViewById<TextView>(R.id.ringVolumeValueText).text = status.ringVolume
+        findViewById<TextView>(R.id.notificationVolumeValueText).text = status.notificationVolume
+        findViewById<TextView>(R.id.alarmVolumeValueText).text = status.alarmVolume
+        findViewById<TextView>(R.id.callVolumeValueText).text = status.callVolume
+        findViewById<TextView>(R.id.mediaVolumeValueText).text = status.mediaVolume
+        findViewById<TextView>(R.id.systemVolumeValueText).text = status.systemVolume
+        findViewById<TextView>(R.id.accessibilityVolumeValueText).text = status.accessibilityVolume
+        findViewById<TextView>(R.id.keypadToneVolumeValueText).text = status.keypadToneVolume
     }
 
     private fun setupSearch() {
