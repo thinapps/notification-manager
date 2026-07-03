@@ -21,7 +21,7 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         allApps = appsRepository.getLaunchableApps()
-        setupDeviceStatusButtons()
+        setupDeviceStatusClickTargets()
         setupSearch()
         renderDeviceStatus()
         renderApps(allApps)
@@ -32,7 +32,19 @@ class MainActivity : Activity() {
         renderDeviceStatus()
     }
 
-    private fun setupDeviceStatusButtons() {
+    private fun setupDeviceStatusClickTargets() {
+        findViewById<TextView>(R.id.soundModeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
+        findViewById<TextView>(R.id.doNotDisturbText).setOnClickListener {
+            settingsNavigator.openDoNotDisturbSettings()
+        }
+        findViewById<TextView>(R.id.ringVolumeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
+        findViewById<TextView>(R.id.notificationVolumeText).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
         findViewById<Button>(R.id.soundSettingsButton).setOnClickListener {
             settingsNavigator.openSoundSettings()
         }
