@@ -65,21 +65,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_sound_mode_label"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_sound_mode_label" />
 
                 <TextView
                     android:id="@+id/soundModeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -96,21 +94,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_do_not_disturb_label"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_do_not_disturb_label" />
 
                 <TextView
                     android:id="@+id/doNotDisturbValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -127,21 +123,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_ring_volume_label"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_ring_volume_label" />
 
                 <TextView
                     android:id="@+id/ringVolumeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -158,21 +152,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_notification_volume_label"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_notification_volume_label" />
 
                 <TextView
                     android:id="@+id/notificationVolumeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -189,21 +181,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_alarm_volume_label"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_alarm_volume_label" />
 
                 <TextView
                     android:id="@+id/alarmVolumeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -220,21 +210,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_call_volume_label"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_call_volume_label" />
 
                 <TextView
                     android:id="@+id/callVolumeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -251,21 +239,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_media_volume_label"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_media_volume_label" />
 
                 <TextView
                     android:id="@+id/mediaVolumeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -282,21 +268,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_system_volume_label"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_system_volume_label" />
 
                 <TextView
                     android:id="@+id/systemVolumeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -313,21 +297,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_accessibility_volume_label"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_accessibility_volume_label" />
 
                 <TextView
                     android:id="@+id/accessibilityVolumeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <View
@@ -344,21 +326,19 @@
                 android:paddingVertical="@dimen/status_row_vertical_padding">
 
                 <TextView
+                    style="@style/StatusLabelText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/status_keypad_tone_volume_label"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:text="@string/status_keypad_tone_volume_label" />
 
                 <TextView
                     android:id="@+id/keypadToneVolumeValueText"
+                    style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="@dimen/body_text_size" />
+                    android:gravity="end" />
             </LinearLayout>
 
             <LinearLayout
