@@ -68,7 +68,7 @@ Assistant volume is not included because `AudioManager.STREAM_ASSISTANT` is newe
 
 Device status rows use a simple label and value layout. Labels stay on the left and values are right-aligned so percentages and raw stream values are easier to scan.
 
-Rows are separated by subtle inset divider lines. The section should still feel like a soft list, not a table or grid.
+Rows are separated by subtle divider lines aligned to the status text width. The section should still feel like a soft list, not a table or grid.
 
 ## Settings Links
 
