@@ -42,7 +42,7 @@ The repository has a basic Android/Kotlin app that shows read-only device notifi
 ### 0.2.1
 - added read-only alarm volume, call volume, media volume, system volume, accessibility volume, and keypad tone volume rows to the device status card
 - made the added volume rows clickable and routed them to Android sound settings
-- renamed the sound shortcut to Sound & volume because it covers multiple volume streams
+- renamed the sound shortcut to Sound & volume settings and stacked it above Notification settings
 - kept all device-wide controls read-only with no new permissions or toggles
 
 ### 0.2.0
