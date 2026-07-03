@@ -13,6 +13,7 @@ import java.util.Locale
 
 class MainActivity : Activity() {
     private val appsRepository by lazy { InstalledAppsRepository(packageManager) }
+    private val deviceStatusReader by lazy { DeviceStatusReader(this) }
     private val settingsNavigator by lazy { NotificationSettingsNavigator(this) }
     private var allApps: List<AppEntry> = emptyList()
 
@@ -20,15 +21,45 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         allApps = appsRepository.getLaunchableApps()
-        setupSystemSettingsButton()
+        setupDeviceStatusButtons()
         setupSearch()
+        renderDeviceStatus()
         renderApps(allApps)
     }
 
-    private fun setupSystemSettingsButton() {
+    override fun onResume() {
+        super.onResume()
+        renderDeviceStatus()
+    }
+
+    private fun setupDeviceStatusButtons() {
+        findViewById<Button>(R.id.soundSettingsButton).setOnClickListener {
+            settingsNavigator.openSoundSettings()
+        }
         findViewById<Button>(R.id.systemSettingsButton).setOnClickListener {
             settingsNavigator.openSystemNotificationSettings()
         }
+    }
+
+    private fun renderDeviceStatus() {
+        val status = deviceStatusReader.read()
+
+        findViewById<TextView>(R.id.soundModeText).text = getString(
+            R.string.status_sound_mode,
+            status.soundMode
+        )
+        findViewById<TextView>(R.id.doNotDisturbText).text = getString(
+            R.string.status_do_not_disturb,
+            status.doNotDisturbMode
+        )
+        findViewById<TextView>(R.id.ringVolumeText).text = getString(
+            R.string.status_ring_volume,
+            status.ringVolume
+        )
+        findViewById<TextView>(R.id.notificationVolumeText).text = getString(
+            R.string.status_notification_volume,
+            status.notificationVolume
+        )
     }
 
     private fun setupSearch() {
