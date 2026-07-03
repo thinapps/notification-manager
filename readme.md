@@ -40,16 +40,13 @@ The repository has a basic Android/Kotlin app that shows read-only device notifi
 
 ## Changelog
 
-### 0.2.2
-- adds a third stacked device-status shortcut labeled Do Not Disturb Settings
-- routes the new Do Not Disturb Settings button to the same Android DND / Modes settings destination as the DND status row
-- keeps Do Not Disturb read-only with no Notification Policy access request or toggle
-
 ### 0.2.1
 - added read-only alarm volume, call volume, media volume, system volume, accessibility volume, and keypad tone volume rows to the device status card
 - made the added volume rows clickable and routed them to Android sound settings
-- renamed the settings shortcuts to Sound & volume settings and System notification settings, stacked in that order
-- kept all device-wide controls read-only with no new permissions or toggles
+- renamed the settings shortcuts to Sound & volume settings and System notification settings
+- added a stacked Do Not Disturb Settings shortcut between Sound & volume settings and System notification settings
+- routes the Do Not Disturb Settings shortcut to the same Android DND / Modes settings destination as the DND status row
+- kept all device-wide controls read-only with no new permissions, no Notification Policy access request, and no toggles
 
 ### 0.2.0
 - added a read-only device status card for sound mode, Do Not Disturb mode, ring volume, and notification volume
