@@ -6,6 +6,7 @@ The main product path is opening Android system settings screens instead of tryi
 
 - system notification settings through the `android.settings.NOTIFICATION_SETTINGS` action string
 - system sound settings through the `android.settings.SOUND_SETTINGS` action string
+- system Do Not Disturb / Modes settings through the `android.settings.ZEN_MODE_SETTINGS` action string, with notification settings fallback
 - app notification settings through `Settings.ACTION_APP_NOTIFICATION_SETTINGS`
 - app details settings through `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`
 - general Android settings fallback through `Settings.ACTION_SETTINGS`
