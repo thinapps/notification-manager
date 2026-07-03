@@ -6,7 +6,7 @@ The main product path is opening Android system settings screens instead of tryi
 
 - system notification settings through the `android.settings.NOTIFICATION_SETTINGS` action string
 - system sound and volume settings through the `android.settings.SOUND_SETTINGS` action string
-- system Do Not Disturb / Modes settings through the `android.settings.ZEN_MODE_SETTINGS` action string, with notification settings fallback
+- system Do Not Disturb / Modes settings through `android.settings.ZEN_MODE_SETTINGS`, with notification settings fallback
 - app notification settings through `Settings.ACTION_APP_NOTIFICATION_SETTINGS`
 - app details settings through `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`
 - general Android settings fallback through `Settings.ACTION_SETTINGS`
@@ -21,7 +21,7 @@ Device status text rows are informational only. Sound, Do Not Disturb, and notif
 
 ## Button Feedback
 
-Settings and app action buttons use standard Android haptic feedback on tap. The feedback is small, local, and does not require any permission.
+Settings and app action buttons use standard Android haptic feedback and rounded ripple feedback on tap. The feedback is small, local, and does not require any permission.
 
 ## Future Link Targets
 
