@@ -8,7 +8,7 @@ This document explains the concepts so future app changes stay clear, restrained
 
 The app may display device-wide sound, volume, and Do Not Disturb status.
 
-The app should not directly toggle these settings by default. Android system settings remain the source of truth, and the user should make changes there.
+The app should not directly change these settings by default. Android system settings remain the source of truth, and the user should make changes there.
 
 ## Sound Mode
 
@@ -20,8 +20,6 @@ Notification Manager reads it from `AudioManager.getRingerMode()` and displays o
 - `Vibrate` for `AudioManager.RINGER_MODE_VIBRATE`
 - `Silent` for `AudioManager.RINGER_MODE_SILENT`
 - `Unknown` if Android returns an unexpected value
-
-Android's API docs describe normal mode as potentially audible, vibrate mode as silent with vibration, and silent mode as silent without vibration.
 
 Reference: https://developer.android.com/reference/android/media/AudioManager
 
@@ -38,8 +36,6 @@ Notification Manager displays:
 - `Alarms only` for `NotificationManager.INTERRUPTION_FILTER_ALARMS`
 - `Total silence` for `NotificationManager.INTERRUPTION_FILTER_NONE`
 - `Unknown` for `NotificationManager.INTERRUPTION_FILTER_UNKNOWN` or any unexpected value
-
-Android's API docs describe the interruption filter as a global rule for which notifications may interrupt the user through sound or vibration.
 
 Reference: https://developer.android.com/reference/android/app/NotificationManager
 
@@ -70,20 +66,13 @@ Assistant volume is not included because `AudioManager.STREAM_ASSISTANT` is newe
 
 ## Settings Links
 
-The status card links each status row to the closest relevant Android settings screen:
+The device status text rows are informational only and are not clickable.
 
-- sound mode opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- ring volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- notification volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- alarm volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- call volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- media volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- system volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- accessibility volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- keypad tone volume opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- Do Not Disturb opens Android DND / Modes settings via `android.settings.ZEN_MODE_SETTINGS`, falling back to notification settings if unavailable
+The card includes three stacked settings buttons:
 
-The card also includes stacked settings buttons: Sound & volume settings first, Do Not Disturb settings second, and System notification settings third.
+- Sound & volume settings opens Android sound settings via `android.settings.SOUND_SETTINGS`
+- Do Not Disturb settings opens Android DND / Modes settings via `android.settings.ZEN_MODE_SETTINGS`, falling back to notification settings if unavailable
+- System notification settings opens Android notification settings via `android.settings.NOTIFICATION_SETTINGS`
 
 Android does not expose reliable public deep links to each individual OEM volume slider. The app uses the closest stable public settings destination instead of private or OEM-specific sub-settings.
 
@@ -91,8 +80,6 @@ These are shortcuts only. The app does not change device status itself.
 
 ## Notification Policy Access
 
-Do Not Disturb control requires Notification Policy access.
+Notification Manager should not request Notification Policy access just to show status or link to Do Not Disturb settings. If a future version considers Do Not Disturb toggles or schedule management, that should be treated as a separate product decision with new docs, permissions review, and clear user-facing explanation.
 
-Notification Manager should not request Notification Policy access just to show status or link to DND settings. If a future version considers DND toggles or schedule management, that should be treated as a separate product decision with new docs, permissions review, and clear user-facing explanation.
-
-For now, DND is read-only.
+For now, Do Not Disturb is read-only.
