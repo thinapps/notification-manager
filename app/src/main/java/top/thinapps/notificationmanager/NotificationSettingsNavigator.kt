@@ -14,6 +14,12 @@ class NotificationSettingsNavigator(
         }
     }
 
+    fun openSoundSettings() {
+        if (!start(Intent(ACTION_SOUND_SETTINGS))) {
+            start(Intent(Settings.ACTION_SETTINGS))
+        }
+    }
+
     fun openAppNotificationSettings(packageName: String) {
         val notificationSettings = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
             putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
@@ -47,5 +53,6 @@ class NotificationSettingsNavigator(
 
     private companion object {
         const val ACTION_NOTIFICATION_SETTINGS = "android.settings.NOTIFICATION_SETTINGS"
+        const val ACTION_SOUND_SETTINGS = "android.settings.SOUND_SETTINGS"
     }
 }
