@@ -11,8 +11,9 @@ The app should focus on settings visibility, explanations, and links into Androi
 - search apps by display name or package name
 - open each app's Android notification settings
 - open each app's Android app info screen
+- open system sound and volume settings
+- open system Do Not Disturb settings
 - open system notification settings
-- open system sound settings
 - fall back to Android app details if a notification settings screen is unavailable
 
 ## Planned Scope
