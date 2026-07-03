@@ -5,7 +5,6 @@
     <color name="surface_stroke">#2A3640</color>
     <color name="status_row_divider">#25333D</color>
     <color name="button_surface">#27323C</color>
-    <color name="button_surface_pressed">#33414C</color>
     <color name="button_ripple">#26F5F7FA</color>
     <color name="button_stroke">#41505C</color>
     <color name="button_text">#F5F7FA</color>
