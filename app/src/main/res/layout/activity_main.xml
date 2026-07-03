@@ -61,6 +61,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_medium"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/body_text_size" />
 
@@ -68,7 +72,10 @@
                 android:id="@+id/doNotDisturbText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_small"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/body_text_size" />
 
@@ -76,7 +83,10 @@
                 android:id="@+id/ringVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_small"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
 
@@ -84,7 +94,10 @@
                 android:id="@+id/notificationVolumeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_small"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="@dimen/status_row_vertical_padding"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/body_text_size" />
 
