@@ -21,7 +21,7 @@ Device status text rows are informational only. Sound, Do Not Disturb, and notif
 
 ## Button Feedback
 
-Settings and app action buttons use standard Android haptic feedback and rounded ripple feedback on tap. The feedback is small, local, and does not require any permission.
+Settings and app action buttons use standard Android haptic feedback and standard ripple feedback on tap. The feedback is small, local, and does not require any permission.
 
 ## Future Link Targets
 
