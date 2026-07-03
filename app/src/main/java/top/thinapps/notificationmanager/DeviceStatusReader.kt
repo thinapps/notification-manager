@@ -15,7 +15,7 @@ data class DeviceStatus(
     val mediaVolume: String,
     val systemVolume: String,
     val accessibilityVolume: String,
-    val dtmfVolume: String
+    val keypadToneVolume: String
 )
 
 class DeviceStatusReader(
@@ -35,7 +35,7 @@ class DeviceStatusReader(
             mediaVolume = readVolume(AudioManager.STREAM_MUSIC),
             systemVolume = readVolume(AudioManager.STREAM_SYSTEM),
             accessibilityVolume = readVolume(AudioManager.STREAM_ACCESSIBILITY),
-            dtmfVolume = readVolume(AudioManager.STREAM_DTMF)
+            keypadToneVolume = readVolume(AudioManager.STREAM_DTMF)
         )
     }
 
