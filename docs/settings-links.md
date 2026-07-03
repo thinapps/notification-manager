@@ -4,18 +4,27 @@ The main product path is opening Android system settings screens instead of tryi
 
 ## Current Link Targets
 
-- system notification settings through `Settings.ACTION_NOTIFICATION_SETTINGS`
+- system notification settings through the `android.settings.NOTIFICATION_SETTINGS` action string
+- system sound settings through the `android.settings.SOUND_SETTINGS` action string
 - app notification settings through `Settings.ACTION_APP_NOTIFICATION_SETTINGS`
 - app details settings through `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`
 - general Android settings fallback through `Settings.ACTION_SETTINGS`
 
+## Link Restraint
+
+The app should link users to normal Android settings screens, not permission pages, unless a future feature clearly needs that permission.
+
+Do Not Disturb status is shown read-only in 0.2.0. The app intentionally does not link to Notification Policy access as a default path because that screen is for granting apps control over DND / Modes configuration, not merely helping users understand their current state.
+
 ## Future Link Targets
 
 - notification listener settings, only if an optional audit mode is added later
-- notification policy access settings, only if a future feature truly requires it
+- notification policy access settings, only if a future feature truly requires DND or Modes control
 
 ## Implementation Notes
 
 Use Android settings intents where available and keep fallbacks for devices that do not support a specific settings screen.
+
+Some Android settings action constants are used as raw action strings when that is more compatible with the current build setup. The raw strings still represent the Android platform settings actions.
 
 The UI should make it clear that Android system settings are the source of truth and that final changes are made by the user.
