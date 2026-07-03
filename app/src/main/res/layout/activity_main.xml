@@ -172,21 +172,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_medium"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/soundSettingsButton"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/button_row_gap"
-                    android:layout_weight="1"
+                    android:layout_marginBottom="@dimen/button_row_gap"
                     android:text="@string/open_sound_settings" />
 
                 <Button
                     android:id="@+id/systemSettingsButton"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:text="@string/open_system_notifications" />
             </LinearLayout>
         </LinearLayout>
