@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.HapticFeedbackConstants
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -33,13 +34,16 @@ class MainActivity : Activity() {
     }
 
     private fun setupDeviceStatusButtons() {
-        findViewById<Button>(R.id.soundSettingsButton).setOnClickListener {
+        findViewById<Button>(R.id.soundSettingsButton).setOnClickListener { view ->
+            view.performButtonHaptic()
             settingsNavigator.openSoundSettings()
         }
-        findViewById<Button>(R.id.doNotDisturbSettingsButton).setOnClickListener {
+        findViewById<Button>(R.id.doNotDisturbSettingsButton).setOnClickListener { view ->
+            view.performButtonHaptic()
             settingsNavigator.openDoNotDisturbSettings()
         }
-        findViewById<Button>(R.id.systemSettingsButton).setOnClickListener {
+        findViewById<Button>(R.id.systemSettingsButton).setOnClickListener { view ->
+            view.performButtonHaptic()
             settingsNavigator.openSystemNotificationSettings()
         }
     }
@@ -148,7 +152,8 @@ class MainActivity : Activity() {
 
             addView(Button(this@MainActivity).apply {
                 text = getString(R.string.open_notification_settings)
-                setOnClickListener {
+                setOnClickListener { view ->
+                    view.performButtonHaptic()
                     settingsNavigator.openAppNotificationSettings(app.packageName)
                 }
                 layoutParams = LinearLayout.LayoutParams(
@@ -162,7 +167,8 @@ class MainActivity : Activity() {
 
             addView(Button(this@MainActivity).apply {
                 text = getString(R.string.open_app_info)
-                setOnClickListener {
+                setOnClickListener { view ->
+                    view.performButtonHaptic()
                     settingsNavigator.openAppDetails(app.packageName)
                 }
                 layoutParams = LinearLayout.LayoutParams(
@@ -172,5 +178,9 @@ class MainActivity : Activity() {
                 )
             })
         }
+    }
+
+    private fun View.performButtonHaptic() {
+        performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
     }
 }
