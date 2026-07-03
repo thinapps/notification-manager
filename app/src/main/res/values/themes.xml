@@ -16,4 +16,16 @@
         <item name="android:paddingEnd">@dimen/button_horizontal_padding</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
+
+    <style name="StatusLabelText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textSize">@dimen/body_text_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="StatusValueText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">@dimen/body_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
 </resources>
