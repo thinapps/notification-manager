@@ -1,6 +1,6 @@
 # Notification Manager
 
-Privacy-friendly Android utility for reviewing app notification settings in one place and opening the relevant Android system settings screens to adjust them.
+Privacy-friendly Android utility for reviewing device notification status and app notification settings in one place.
 
 The app is intended as a notification settings overview, not a notification content reader or background notification controller.
 
@@ -10,18 +10,21 @@ The app is intended as a notification settings overview, not a notification cont
 | --- | --- |
 | [Build](docs/build.md) | Explains the basic Gradle project, release workflow, signing, and R8 choices. |
 | [Scope](docs/scope.md) | Defines the settings-helper product scope and what the app should not attempt to do. |
+| [Android Device Status](docs/android-device-status.md) | Explains sound mode, Do Not Disturb, volume streams, and why the app keeps them read-only. |
 | [Privacy](docs/privacy.md) | Explains the local-only privacy model and notification-content boundaries. |
-| [Permissions](docs/permissions.md) | Explains the initial no-sensitive-permissions setup and future permission review rules. |
+| [Permissions](docs/permissions.md) | Explains the no-sensitive-permissions setup and future permission review rules. |
 | [Settings Links](docs/settings-links.md) | Explains the Android system settings deep-link approach. |
 
 ## Current Scope
 
+- show read-only device sound mode, Do Not Disturb mode, ring volume, and notification volume
 - list launchable apps on the device
 - search apps by name or package name
 - open Android notification settings for a selected app
 - open Android app info for a selected app
 - open system notification settings
-- avoid notification listener, accessibility, internet, storage, analytics, ads, account, and sync features
+- open system sound settings
+- avoid notification listener, accessibility, Notification Policy access, internet, storage, analytics, ads, account, and sync features
 
 ## Planned Scope
 
@@ -32,9 +35,15 @@ The app is intended as a notification settings overview, not a notification cont
 
 ## Project Status
 
-The repository has a basic Android/Kotlin app that lists launchable apps, searches them locally, and opens Android notification settings or app info for each app. The UI is intentionally minimal and the project does not include notification reading, notification listener services, account features, analytics, ads, or network access.
+The repository has a basic Android/Kotlin app that shows read-only device notification status, lists launchable apps, searches them locally, and opens Android notification settings or app info for each app. The UI is intentionally minimal and the project does not include notification reading, notification listener services, Notification Policy access, account features, analytics, ads, or network access.
 
 ## Changelog
+
+### 0.2.0
+- added a read-only device status card for sound mode, Do Not Disturb mode, ring volume, and notification volume
+- added a sound settings shortcut beside the existing notification settings shortcut
+- kept device-wide controls read-only with no DND toggles or Notification Policy access request
+- documented Android sound mode, Do Not Disturb interruption filters, volume streams, settings links, and permission boundaries
 
 ### 0.1.0
 - added a minimal Android/Kotlin app shell for Notification Manager
