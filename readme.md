@@ -23,7 +23,7 @@ The app is intended as a notification settings overview, not a notification cont
 - open Android notification settings for a selected app
 - open Android app info for a selected app
 - open system notification settings
-- open system sound settings
+- open system sound and volume settings
 - avoid notification listener, Notification Policy access, internet, storage, analytics, ads, account, and sync features
 
 ## Planned Scope
@@ -42,6 +42,7 @@ The repository has a basic Android/Kotlin app that shows read-only device notifi
 ### 0.2.1
 - added read-only alarm volume, call volume, media volume, system volume, accessibility volume, and keypad tone volume rows to the device status card
 - made the added volume rows clickable and routed them to Android sound settings
+- renamed the sound shortcut to Sound & volume because it covers multiple volume streams
 - kept all device-wide controls read-only with no new permissions or toggles
 
 ### 0.2.0
