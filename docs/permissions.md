@@ -12,7 +12,7 @@ Notification Manager does not request sensitive runtime permissions by default.
 - no storage permission
 - manifest package visibility is limited to launchable apps and the specific Android settings intents the app opens
 
-The 0.2.0 device status card reads Android-provided sound mode, Do Not Disturb interruption filter, ring volume, and notification volume. These are read-only status checks and do not require notification listener access or Notification Policy access.
+The device status card reads Android-provided sound mode, Do Not Disturb interruption filter, and supported volume streams: ring, notification, alarm, call, media, system, accessibility, and keypad tone. These are read-only status checks and do not require notification listener access or Notification Policy access.
 
 ## Future Permission Review
 
