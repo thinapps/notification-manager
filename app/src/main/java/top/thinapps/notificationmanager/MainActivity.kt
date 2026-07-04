@@ -7,6 +7,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
@@ -52,7 +53,7 @@ class MainActivity : Activity() {
 
     override fun onResume() {
         super.onResume()
-        requestNotificationAuditRebindIfNeeded()
+        refreshNotificationAuditSnapshotIfPossible()
         renderDeviceStatus()
         refreshNotificationAuditUi()
     }
@@ -153,6 +154,7 @@ class MainActivity : Activity() {
     private fun renderNotificationAuditStatus() {
         notificationAuditSummaryText.text = when {
             !isNotificationAuditEnabled() -> getString(R.string.notification_audit_disabled_summary)
+            !NotificationAuditState.isListenerConnected() -> getString(R.string.notification_audit_connecting_summary)
             !NotificationAuditState.hasSnapshot() -> getString(R.string.notification_audit_waiting_summary)
             else -> getString(R.string.notification_audit_enabled_summary)
         }
@@ -187,6 +189,7 @@ class MainActivity : Activity() {
         val emptyText = findViewById<TextView>(R.id.emptyText)
         val auditEnabled = isNotificationAuditEnabled()
         val auditSnapshotLoaded = NotificationAuditState.hasSnapshot()
+        val listenerConnected = NotificationAuditState.isListenerConnected()
         val auditSnapshot = NotificationAuditState.snapshot()
 
         countText.text = resources.getQuantityString(R.plurals.app_count, apps.size, apps.size)
@@ -199,13 +202,14 @@ class MainActivity : Activity() {
         appList.removeAllViews()
 
         apps.forEach { app ->
-            appList.addView(createAppRow(app, auditEnabled, auditSnapshotLoaded, auditSnapshot[app.packageName]))
+            appList.addView(createAppRow(app, auditEnabled, listenerConnected, auditSnapshotLoaded, auditSnapshot[app.packageName]))
         }
     }
 
     private fun createAppRow(
         app: AppEntry,
         auditEnabled: Boolean,
+        listenerConnected: Boolean,
         auditSnapshotLoaded: Boolean,
         audit: AppNotificationAudit?
     ): View {
@@ -241,6 +245,7 @@ class MainActivity : Activity() {
         if (auditEnabled) {
             row.addView(TextView(this).apply {
                 text = when {
+                    !listenerConnected -> getString(R.string.audit_waiting_for_listener)
                     !auditSnapshotLoaded -> getString(R.string.audit_waiting_for_results)
                     audit != null -> audit.summary
                     else -> getString(R.string.audit_no_active_notifications)
@@ -301,16 +306,36 @@ class MainActivity : Activity() {
         }
     }
 
+    private fun refreshNotificationAuditSnapshotIfPossible() {
+        if (!isNotificationAuditEnabled()) {
+            NotificationAuditState.clear()
+            return
+        }
+
+        if (!NotificationAuditListenerService.refreshActiveSnapshot()) {
+            requestNotificationAuditRebindIfNeeded()
+        }
+    }
+
     private fun refreshNotificationAuditUi() {
         renderNotificationAuditStatus()
         renderApps(filterApps(findViewById<EditText>(R.id.searchInput).text?.toString().orEmpty()))
     }
 
     private fun requestNotificationAuditRebindIfNeeded() {
-        if (isNotificationAuditEnabled() && !NotificationAuditState.hasSnapshot()) {
+        if (isNotificationAuditEnabled() && !NotificationAuditState.isListenerConnected()) {
             val component = ComponentName(this, NotificationAuditListenerService::class.java)
+            ensureNotificationAuditComponentEnabled(component)
             NotificationListenerService.requestRebind(component)
         }
+    }
+
+    private fun ensureNotificationAuditComponentEnabled(component: ComponentName) {
+        packageManager.setComponentEnabledSetting(
+            component,
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+            PackageManager.DONT_KILL_APP
+        )
     }
 
     private fun registerNotificationAuditRefreshReceiver() {
