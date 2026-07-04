@@ -22,6 +22,8 @@ The app is intended as a notification settings overview with an optional local n
 - tracks whether Android has connected the notification audit listener after access is enabled
 - refreshes the audit snapshot directly from the connected listener when the main screen resumes
 - requests listener rebind only when audit access is enabled but the listener is not connected
+- reports richer audit evidence, including channel importance and exposed sound/vibration configuration
+- uses Alerting when Android exposes alert-level importance without exposing sound or vibration details
 
 ### 0.3.1
 - refreshes visible audit rows from listener updates after Android connects the audit service or notification state changes
