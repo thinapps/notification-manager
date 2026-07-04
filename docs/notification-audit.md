@@ -12,13 +12,19 @@ Audit mode may use Android notification access only after the user enables it in
 
 When enabled, audit mode can show active app behavior as:
 
+- `Sound + vibrate`
 - `Sound`
 - `Vibrate`
+- `Alerting`
 - `Silent`
 - `None`
 - `Unknown`
 
 The value is based on active visible notification records and Android ranking/channel information. It is an estimate of active behavior, not a promise that every inactive channel on the device has been inspected.
+
+Audit summaries include the strongest active behavior found for that app, the active notification count, and the most useful evidence Android exposed, such as channel importance or whether sound/vibration was configured.
+
+`Alerting` means Android exposed alert-level importance but did not expose sound or vibration details for the active notification. This is more accurate than blindly calling the notification `Sound`.
 
 Apps with no active visible notification should remain `no active notification` or `Unknown` rather than being guessed.
 
