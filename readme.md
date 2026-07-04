@@ -18,6 +18,11 @@ The app is intended as a notification settings overview with an optional local n
 
 ## Changelog
 
+### 0.3.2
+- tracks whether Android has connected the notification audit listener after access is enabled
+- refreshes the audit snapshot directly from the connected listener when the main screen resumes
+- requests listener rebind only when audit access is enabled but the listener is not connected
+
 ### 0.3.1
 - refreshes visible audit rows from listener updates after Android connects the audit service or notification state changes
 - shows a waiting state before the first audit snapshot instead of showing no active notification on every app
