@@ -30,6 +30,65 @@
             android:textSize="@dimen/body_text_size" />
 
         <LinearLayout
+            android:id="@+id/doNotDisturbCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_large"
+            android:background="@drawable/app_row_background"
+            android:orientation="vertical"
+            android:padding="@dimen/app_row_padding">
+
+            <TextView
+                android:id="@+id/doNotDisturbTitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/do_not_disturb_title"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/app_label_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/doNotDisturbSummaryText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_small"
+                android:text="@string/do_not_disturb_summary"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/package_text_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_medium"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/status_row_vertical_padding">
+
+                <TextView
+                    style="@style/StatusLabelText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/status_do_not_disturb_label" />
+
+                <TextView
+                    android:id="@+id/doNotDisturbValueText"
+                    style="@style/StatusValueText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/status_row_value_gap"
+                    android:gravity="end" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/doNotDisturbSettingsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large"
+                android:text="@string/open_do_not_disturb_settings" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/deviceStatusCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,35 +132,6 @@
 
                 <TextView
                     android:id="@+id/soundModeValueText"
-                    style="@style/StatusValueText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/status_row_value_gap"
-                    android:gravity="end" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="@dimen/status_row_divider_inset"
-                android:background="@color/status_row_divider" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/status_row_vertical_padding">
-
-                <TextView
-                    style="@style/StatusLabelText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/status_do_not_disturb_label" />
-
-                <TextView
-                    android:id="@+id/doNotDisturbValueText"
                     style="@style/StatusValueText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -354,13 +384,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/button_row_gap"
                     android:text="@string/open_sound_settings" />
-
-                <Button
-                    android:id="@+id/doNotDisturbSettingsButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/button_row_gap"
-                    android:text="@string/open_do_not_disturb_settings" />
 
                 <Button
                     android:id="@+id/systemSettingsButton"
