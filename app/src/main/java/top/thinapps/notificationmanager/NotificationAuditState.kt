@@ -15,6 +15,7 @@ object NotificationAuditState {
     private val lock = Any()
     private var auditsByPackage: Map<String, AppNotificationAudit> = emptyMap()
     private var hasSnapshot = false
+    private var listenerConnected = false
 
     fun snapshot(): Map<String, AppNotificationAudit> {
         return synchronized(lock) {
@@ -25,6 +26,24 @@ object NotificationAuditState {
     fun hasSnapshot(): Boolean {
         return synchronized(lock) {
             hasSnapshot
+        }
+    }
+
+    fun isListenerConnected(): Boolean {
+        return synchronized(lock) {
+            listenerConnected
+        }
+    }
+
+    fun markListenerConnected() {
+        synchronized(lock) {
+            listenerConnected = true
+        }
+    }
+
+    fun markListenerDisconnected() {
+        synchronized(lock) {
+            listenerConnected = false
         }
     }
 
