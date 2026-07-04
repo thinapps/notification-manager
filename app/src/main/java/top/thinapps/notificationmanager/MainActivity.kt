@@ -1,6 +1,10 @@
 package top.thinapps.notificationmanager
 
 import android.app.Activity
+import android.app.NotificationManager
+import android.content.ComponentName
+import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,6 +20,7 @@ class MainActivity : Activity() {
     private val appsRepository by lazy { InstalledAppsRepository(packageManager) }
     private val deviceStatusReader by lazy { DeviceStatusReader(this) }
     private val settingsNavigator by lazy { NotificationSettingsNavigator(this) }
+    private lateinit var notificationAuditSummaryText: TextView
     private var allApps: List<AppEntry> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,14 +28,18 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         allApps = appsRepository.getLaunchableApps()
         setupDeviceStatusButtons()
+        setupNotificationAuditCard()
         setupSearch()
         renderDeviceStatus()
+        renderNotificationAuditStatus()
         renderApps(allApps)
     }
 
     override fun onResume() {
         super.onResume()
         renderDeviceStatus()
+        renderNotificationAuditStatus()
+        renderApps(filterApps(findViewById<EditText>(R.id.searchInput).text?.toString().orEmpty()))
     }
 
     private fun setupDeviceStatusButtons() {
@@ -48,6 +57,64 @@ class MainActivity : Activity() {
         }
     }
 
+    private fun setupNotificationAuditCard() {
+        val root = findViewById<View>(R.id.deviceStatusCard).parent as LinearLayout
+        val deviceStatusCard = findViewById<View>(R.id.deviceStatusCard)
+        root.addView(createNotificationAuditCard(), root.indexOfChild(deviceStatusCard) + 1)
+    }
+
+    private fun createNotificationAuditCard(): View {
+        return LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            background = getDrawable(R.drawable.app_row_background)
+            setPadding(
+                resources.getDimensionPixelSize(R.dimen.app_row_padding),
+                resources.getDimensionPixelSize(R.dimen.app_row_padding),
+                resources.getDimensionPixelSize(R.dimen.app_row_padding),
+                resources.getDimensionPixelSize(R.dimen.app_row_padding)
+            )
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                topMargin = resources.getDimensionPixelSize(R.dimen.space_large)
+            }
+
+            addView(TextView(this@MainActivity).apply {
+                text = getString(R.string.notification_audit_title)
+                setTextColor(getColor(R.color.text_primary))
+                textSize = resources.getDimension(R.dimen.app_label_text_size) / resources.displayMetrics.scaledDensity
+                setTypeface(typeface, Typeface.BOLD)
+            })
+
+            notificationAuditSummaryText = TextView(this@MainActivity).apply {
+                setTextColor(getColor(R.color.text_secondary))
+                textSize = resources.getDimension(R.dimen.package_text_size) / resources.displayMetrics.scaledDensity
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topMargin = resources.getDimensionPixelSize(R.dimen.space_small)
+                }
+            }
+            addView(notificationAuditSummaryText)
+
+            addView(Button(this@MainActivity).apply {
+                text = getString(R.string.open_notification_access_settings)
+                setOnClickListener { view ->
+                    view.performButtonHaptic()
+                    settingsNavigator.openNotificationListenerSettings()
+                }
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topMargin = resources.getDimensionPixelSize(R.dimen.space_medium)
+                }
+            })
+        }
+    }
+
     private fun renderDeviceStatus() {
         val status = deviceStatusReader.read()
 
@@ -61,6 +128,14 @@ class MainActivity : Activity() {
         findViewById<TextView>(R.id.systemVolumeValueText).text = status.systemVolume
         findViewById<TextView>(R.id.accessibilityVolumeValueText).text = status.accessibilityVolume
         findViewById<TextView>(R.id.keypadToneVolumeValueText).text = status.keypadToneVolume
+    }
+
+    private fun renderNotificationAuditStatus() {
+        notificationAuditSummaryText.text = if (isNotificationAuditEnabled()) {
+            getString(R.string.notification_audit_enabled_summary)
+        } else {
+            getString(R.string.notification_audit_disabled_summary)
+        }
     }
 
     private fun setupSearch() {
@@ -90,6 +165,8 @@ class MainActivity : Activity() {
         val appList = findViewById<LinearLayout>(R.id.appList)
         val countText = findViewById<TextView>(R.id.countText)
         val emptyText = findViewById<TextView>(R.id.emptyText)
+        val auditEnabled = isNotificationAuditEnabled()
+        val auditSnapshot = NotificationAuditState.snapshot()
 
         countText.text = resources.getQuantityString(R.plurals.app_count, apps.size, apps.size)
         emptyText.text = if (allApps.isEmpty()) {
@@ -101,11 +178,15 @@ class MainActivity : Activity() {
         appList.removeAllViews()
 
         apps.forEach { app ->
-            appList.addView(createAppRow(app))
+            appList.addView(createAppRow(app, auditEnabled, auditSnapshot[app.packageName]))
         }
     }
 
-    private fun createAppRow(app: AppEntry): View {
+    private fun createAppRow(
+        app: AppEntry,
+        auditEnabled: Boolean,
+        audit: AppNotificationAudit?
+    ): View {
         val row = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             background = getDrawable(R.drawable.app_row_background)
@@ -134,6 +215,20 @@ class MainActivity : Activity() {
             setTextColor(getColor(R.color.text_secondary))
             textSize = resources.getDimension(R.dimen.package_text_size) / resources.displayMetrics.scaledDensity
         })
+
+        if (auditEnabled) {
+            row.addView(TextView(this).apply {
+                text = audit?.summary ?: getString(R.string.audit_no_active_notifications)
+                setTextColor(getColor(R.color.text_secondary))
+                textSize = resources.getDimension(R.dimen.package_text_size) / resources.displayMetrics.scaledDensity
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    topMargin = resources.getDimensionPixelSize(R.dimen.space_small)
+                }
+            })
+        }
 
         row.addView(createButtonRow(app))
 
@@ -178,6 +273,16 @@ class MainActivity : Activity() {
                 )
             })
         }
+    }
+
+    private fun isNotificationAuditEnabled(): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O_MR1) {
+            return false
+        }
+
+        val notificationManager = getSystemService(NotificationManager::class.java)
+        val component = ComponentName(this, NotificationAuditListenerService::class.java)
+        return notificationManager.isNotificationListenerAccessGranted(component)
     }
 
     private fun View.performButtonHaptic() {
