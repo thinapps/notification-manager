@@ -2,6 +2,7 @@ package top.thinapps.notificationmanager
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Intent
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 
@@ -38,6 +39,12 @@ class NotificationAuditListenerService : NotificationListenerService() {
         } catch (_: RuntimeException) {
             NotificationAuditState.clear()
         }
+
+        broadcastAuditUpdated()
+    }
+
+    private fun broadcastAuditUpdated() {
+        sendBroadcast(Intent(ACTION_NOTIFICATION_AUDIT_UPDATED).setPackage(packageName))
     }
 
     private fun classify(
@@ -83,11 +90,12 @@ class NotificationAuditListenerService : NotificationListenerService() {
         }
     }
 
-    private companion object {
-        const val LABEL_SOUND = "Sound"
-        const val LABEL_VIBRATE = "Vibrate"
-        const val LABEL_SILENT = "Silent"
-        const val LABEL_NONE = "None"
-        const val LABEL_UNKNOWN = "Unknown"
+    companion object {
+        const val ACTION_NOTIFICATION_AUDIT_UPDATED = "top.thinapps.notificationmanager.NOTIFICATION_AUDIT_UPDATED"
+        private const val LABEL_SOUND = "Sound"
+        private const val LABEL_VIBRATE = "Vibrate"
+        private const val LABEL_SILENT = "Silent"
+        private const val LABEL_NONE = "None"
+        private const val LABEL_UNKNOWN = "Unknown"
     }
 }
