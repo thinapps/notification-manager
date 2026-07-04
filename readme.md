@@ -25,6 +25,7 @@ The app is intended as a notification settings overview with an optional local n
 - reports richer audit evidence, including channel importance and exposed sound/vibration configuration
 - uses Alerting when Android exposes alert-level importance without exposing sound or vibration details
 - summarizes mixed active notification states instead of only showing the strongest active state
+- separates channel evidence from actual device result by labeling device output as not verified
 - moves Do Not Disturb into its own top section with its own settings button
 
 ### 0.3.1
