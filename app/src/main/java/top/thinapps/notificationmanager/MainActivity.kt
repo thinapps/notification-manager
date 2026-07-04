@@ -2,10 +2,15 @@ package top.thinapps.notificationmanager
 
 import android.app.Activity
 import android.app.NotificationManager
+import android.content.BroadcastReceiver
 import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
+import android.service.notification.NotificationListenerService
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.HapticFeedbackConstants
@@ -20,6 +25,11 @@ class MainActivity : Activity() {
     private val appsRepository by lazy { InstalledAppsRepository(packageManager) }
     private val deviceStatusReader by lazy { DeviceStatusReader(this) }
     private val settingsNavigator by lazy { NotificationSettingsNavigator(this) }
+    private val notificationAuditRefreshReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            refreshNotificationAuditUi()
+        }
+    }
     private lateinit var notificationAuditSummaryText: TextView
     private var allApps: List<AppEntry> = emptyList()
 
@@ -35,11 +45,21 @@ class MainActivity : Activity() {
         renderApps(allApps)
     }
 
+    override fun onStart() {
+        super.onStart()
+        registerNotificationAuditRefreshReceiver()
+    }
+
     override fun onResume() {
         super.onResume()
+        requestNotificationAuditRebindIfNeeded()
         renderDeviceStatus()
-        renderNotificationAuditStatus()
-        renderApps(filterApps(findViewById<EditText>(R.id.searchInput).text?.toString().orEmpty()))
+        refreshNotificationAuditUi()
+    }
+
+    override fun onStop() {
+        unregisterReceiver(notificationAuditRefreshReceiver)
+        super.onStop()
     }
 
     private fun setupDeviceStatusButtons() {
@@ -131,10 +151,10 @@ class MainActivity : Activity() {
     }
 
     private fun renderNotificationAuditStatus() {
-        notificationAuditSummaryText.text = if (isNotificationAuditEnabled()) {
-            getString(R.string.notification_audit_enabled_summary)
-        } else {
-            getString(R.string.notification_audit_disabled_summary)
+        notificationAuditSummaryText.text = when {
+            !isNotificationAuditEnabled() -> getString(R.string.notification_audit_disabled_summary)
+            !NotificationAuditState.hasSnapshot() -> getString(R.string.notification_audit_waiting_summary)
+            else -> getString(R.string.notification_audit_enabled_summary)
         }
     }
 
@@ -166,6 +186,7 @@ class MainActivity : Activity() {
         val countText = findViewById<TextView>(R.id.countText)
         val emptyText = findViewById<TextView>(R.id.emptyText)
         val auditEnabled = isNotificationAuditEnabled()
+        val auditSnapshotLoaded = NotificationAuditState.hasSnapshot()
         val auditSnapshot = NotificationAuditState.snapshot()
 
         countText.text = resources.getQuantityString(R.plurals.app_count, apps.size, apps.size)
@@ -178,13 +199,14 @@ class MainActivity : Activity() {
         appList.removeAllViews()
 
         apps.forEach { app ->
-            appList.addView(createAppRow(app, auditEnabled, auditSnapshot[app.packageName]))
+            appList.addView(createAppRow(app, auditEnabled, auditSnapshotLoaded, auditSnapshot[app.packageName]))
         }
     }
 
     private fun createAppRow(
         app: AppEntry,
         auditEnabled: Boolean,
+        auditSnapshotLoaded: Boolean,
         audit: AppNotificationAudit?
     ): View {
         val row = LinearLayout(this).apply {
@@ -218,7 +240,11 @@ class MainActivity : Activity() {
 
         if (auditEnabled) {
             row.addView(TextView(this).apply {
-                text = audit?.summary ?: getString(R.string.audit_no_active_notifications)
+                text = when {
+                    !auditSnapshotLoaded -> getString(R.string.audit_waiting_for_results)
+                    audit != null -> audit.summary
+                    else -> getString(R.string.audit_no_active_notifications)
+                }
                 setTextColor(getColor(R.color.text_secondary))
                 textSize = resources.getDimension(R.dimen.package_text_size) / resources.displayMetrics.scaledDensity
                 layoutParams = LinearLayout.LayoutParams(
@@ -272,6 +298,27 @@ class MainActivity : Activity() {
                     1f
                 )
             })
+        }
+    }
+
+    private fun refreshNotificationAuditUi() {
+        renderNotificationAuditStatus()
+        renderApps(filterApps(findViewById<EditText>(R.id.searchInput).text?.toString().orEmpty()))
+    }
+
+    private fun requestNotificationAuditRebindIfNeeded() {
+        if (isNotificationAuditEnabled() && !NotificationAuditState.hasSnapshot()) {
+            val component = ComponentName(this, NotificationAuditListenerService::class.java)
+            NotificationListenerService.requestRebind(component)
+        }
+    }
+
+    private fun registerNotificationAuditRefreshReceiver() {
+        val filter = IntentFilter(NotificationAuditListenerService.ACTION_NOTIFICATION_AUDIT_UPDATED)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(notificationAuditRefreshReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(notificationAuditRefreshReceiver, filter)
         }
     }
 
