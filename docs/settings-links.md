@@ -7,13 +7,14 @@ The main product path is opening Android system settings screens instead of tryi
 - system notification settings through the `android.settings.NOTIFICATION_SETTINGS` action string
 - system sound and volume settings through the `android.settings.SOUND_SETTINGS` action string
 - system Do Not Disturb / Modes settings through `android.settings.ZEN_MODE_SETTINGS`, with notification settings fallback
+- Android access settings for optional audit mode through `android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS`, with general Android settings fallback
 - app notification settings through `Settings.ACTION_APP_NOTIFICATION_SETTINGS`
 - app details settings through `Settings.ACTION_APPLICATION_DETAILS_SETTINGS`
 - general Android settings fallback through `Settings.ACTION_SETTINGS`
 
 ## Link Restraint
 
-The app should link users to normal Android settings screens, not permission pages, unless a future feature clearly needs that permission.
+The app should link users to normal Android settings screens by default. Special access screens should only be linked when tied to a clear feature, such as the optional audit card.
 
 Do Not Disturb status and the Do Not Disturb settings shortcut are read-only from the app's perspective. The app intentionally does not link to Notification Policy access as a default path because that screen is for granting apps management of Do Not Disturb / Modes configuration, not merely helping users understand or adjust their current state in Android settings.
 
@@ -25,8 +26,7 @@ Settings and app action buttons use standard Android haptic feedback and standar
 
 ## Future Link Targets
 
-- notification listener settings, only if an optional audit mode is added later
-- notification policy access settings, only if a future feature truly requires Do Not Disturb or Modes management
+- Notification Policy access settings, only if a future feature truly requires Do Not Disturb or Modes management
 
 ## Implementation Notes
 
