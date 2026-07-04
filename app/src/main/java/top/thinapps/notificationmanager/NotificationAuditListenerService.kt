@@ -18,7 +18,7 @@ class NotificationAuditListenerService : NotificationListenerService() {
         refreshAudit()
     }
 
-    override fun onNotificationRankingUpdate(rankingMap: RankingMap) {
+    override fun onNotificationRankingUpdate(rankingMap: NotificationListenerService.RankingMap) {
         refreshAudit()
     }
 
@@ -42,9 +42,9 @@ class NotificationAuditListenerService : NotificationListenerService() {
 
     private fun classify(
         statusBarNotification: StatusBarNotification,
-        rankingMap: RankingMap?
+        rankingMap: NotificationListenerService.RankingMap?
     ): String {
-        val ranking = Ranking()
+        val ranking = NotificationListenerService.Ranking()
         val hasRanking = rankingMap?.getRanking(statusBarNotification.key, ranking) == true
         val channel = if (hasRanking) ranking.channel else null
         val importance = if (hasRanking) {
