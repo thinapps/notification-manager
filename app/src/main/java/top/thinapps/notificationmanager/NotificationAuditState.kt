@@ -2,12 +2,13 @@ package top.thinapps.notificationmanager
 
 data class AppNotificationAudit(
     val label: String,
+    val detail: String,
     val activeCount: Int
 ) {
     val summary: String
         get() {
             val activeText = if (activeCount == 1) "1 active" else "$activeCount active"
-            return "Audit: $label ($activeText)"
+            return "Audit: $label - $detail ($activeText)"
         }
 }
 
