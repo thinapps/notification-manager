@@ -24,13 +24,17 @@ Apps with no active visible notification should remain `no active notification` 
 
 ## Refresh Behavior
 
-When notification access is enabled, the main screen requests Android to bind the notification audit listener if no audit snapshot has been returned yet.
+When notification access is enabled, the main screen checks whether Android has connected the notification audit listener.
+
+If the listener is connected, the main screen asks the active listener instance to refresh its in-memory snapshot when the main screen resumes. This avoids depending only on listener push events.
+
+If audit access is enabled but the listener is not connected, the main screen ensures the listener component is enabled and requests a listener rebind.
 
 The listener refreshes the in-memory audit snapshot when Android connects it, when a visible notification is posted or removed, and when Android sends ranking updates.
 
 The main screen listens for local audit update broadcasts while visible, then refreshes the audit card and currently visible app rows. This avoids stale `no active notification` rows after returning from Android notification access settings.
 
-Before Android returns the first audit snapshot, the UI should show a waiting state instead of treating every app as having no active notification.
+Before Android connects the listener or returns the first audit snapshot, the UI should show a waiting state instead of treating every app as having no active notification.
 
 ## Data Boundaries
 
