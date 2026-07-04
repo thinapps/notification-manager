@@ -10,7 +10,7 @@ Audit mode may use Android notification access only after the user enables it in
 
 ## What It Shows
 
-When enabled, audit mode can show active app behavior as:
+When enabled, audit mode can show active app channel/ranking evidence as:
 
 - `Sound + vibrate`
 - `Sound`
@@ -20,7 +20,9 @@ When enabled, audit mode can show active app behavior as:
 - `None`
 - `Unknown`
 
-The value is based on active visible notification records and Android ranking/channel information. It is an estimate of active behavior, not a promise that every inactive channel on the device has been inspected.
+The value is based on active visible notification records and Android ranking/channel information. It is an estimate of active channel behavior, not a promise that every inactive channel on the device has been inspected.
+
+Audit summaries separate `Channel` evidence from `Device` result. `Channel` describes what Android exposes about the active notification's ranking and channel. `Device: not verified` means the app is not claiming what the user actually heard, felt, or saw.
 
 Audit summaries include the strongest active behavior found for that app, the active notification count, and the most useful evidence Android exposed, such as channel importance or whether sound/vibration was configured.
 
