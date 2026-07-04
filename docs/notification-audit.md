@@ -22,6 +22,16 @@ The value is based on active visible notification records and Android ranking/ch
 
 Apps with no active visible notification should remain `no active notification` or `Unknown` rather than being guessed.
 
+## Refresh Behavior
+
+When notification access is enabled, the main screen requests Android to bind the notification audit listener if no audit snapshot has been returned yet.
+
+The listener refreshes the in-memory audit snapshot when Android connects it, when a visible notification is posted or removed, and when Android sends ranking updates.
+
+The main screen listens for local audit update broadcasts while visible, then refreshes the audit card and currently visible app rows. This avoids stale `no active notification` rows after returning from Android notification access settings.
+
+Before Android returns the first audit snapshot, the UI should show a waiting state instead of treating every app as having no active notification.
+
 ## Data Boundaries
 
 Audit mode should stay local-only.
@@ -34,10 +44,6 @@ The app should not:
 - sell or share derived data
 - use accessibility services to work around Android boundaries
 - change another app's channels or settings directly
-
-## Future Consideration
-
-The app currently refreshes visible audit rows when the main screen is created or resumed and when the app list is re-rendered. A future patch may add a lightweight live refresh while the main screen remains open, but only if testing shows the audit rows feel stale. This is a UX polish consideration, not a required Android best practice.
 
 ## Android Behavior Notes
 
