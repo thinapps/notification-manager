@@ -18,12 +18,14 @@ The app is intended as a notification settings overview with an optional local n
 
 ## Changelog
 
+### 0.3.1
+- refreshes visible audit rows from listener updates after Android connects the audit service or notification state changes
+- shows a waiting state before the first audit snapshot instead of showing no active notification on every app
+
 ### 0.3.0
 - added an optional local notification audit service for active visible notifications after the user enables Android notification access
 - added a notification audit card with a link to Android notification access settings
 - shows per-app active notification behavior as Sound, Vibrate, Silent, None, or Unknown when audit access is enabled
-- refreshes visible audit rows from listener updates after Android connects the audit service or notification state changes
-- shows a waiting state before the first audit snapshot instead of treating every app as having no active notification
 - keeps notification audit data in memory only and does not store notification text
 
 ### 0.2.3
