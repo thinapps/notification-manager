@@ -9,7 +9,7 @@ Notification Manager should be designed as a local-only utility.
 - no analytics SDK
 - no advertising SDK
 - no network permission unless a future feature explicitly requires it
-- no notification content access by default
+- no notification access required for the basic settings-helper experience
 
 ## Device Status
 
@@ -30,8 +30,12 @@ This status is displayed on screen and is not stored, synced, uploaded, or sent 
 
 The app does not request Notification Policy access to show Do Not Disturb status and does not toggle DND by default.
 
-## Notification Access
+## Optional Notification Audit
 
-Notification listener access should stay optional. If it is added later, the app should use it only for clearly explained local features, such as counting how often apps notify the user.
+Notification access is optional and only used for the local audit mode.
 
-Notification contents should not be stored, synced, uploaded, or shown as a core feature of this app.
+When enabled, the app reads active visible notification metadata exposed by Android so it can estimate whether an app's active notification behavior is Sound, Vibrate, Silent, None, or Unknown.
+
+Audit state is kept in memory only. The app should not persist message text, sync notification data, upload notification data, or sell/share notification-derived data.
+
+The audit mode should remain explainable from the UI before the user is sent to Android notification access settings.
