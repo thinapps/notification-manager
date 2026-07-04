@@ -7,9 +7,11 @@
     <string name="notification_audit_service_name">Notification Manager audit</string>
     <string name="notification_audit_title">Notification audit</string>
     <string name="notification_audit_disabled_summary">Optional. Enable Android notification access to estimate active notification behavior by app. Notification text is not stored.</string>
-    <string name="notification_audit_waiting_summary">Enabled. Waiting for Android to connect the audit service and return active notification data.</string>
+    <string name="notification_audit_connecting_summary">Enabled. Waiting for Android to connect the notification audit listener.</string>
+    <string name="notification_audit_waiting_summary">Enabled. Waiting for Android to return active notification data.</string>
     <string name="notification_audit_enabled_summary">Enabled. Showing behavior for apps with active visible notifications. Apps with no active notification remain unknown.</string>
     <string name="open_notification_access_settings">Notification access settings</string>
+    <string name="audit_waiting_for_listener">Audit: waiting for listener connection</string>
     <string name="audit_waiting_for_results">Audit: waiting for active notification data</string>
     <string name="audit_no_active_notifications">Audit: no active notification</string>
     <string name="status_sound_mode_label">Sound mode</string>
