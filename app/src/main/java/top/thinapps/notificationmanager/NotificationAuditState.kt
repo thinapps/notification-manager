@@ -14,6 +14,7 @@ data class AppNotificationAudit(
 object NotificationAuditState {
     private val lock = Any()
     private var auditsByPackage: Map<String, AppNotificationAudit> = emptyMap()
+    private var hasSnapshot = false
 
     fun snapshot(): Map<String, AppNotificationAudit> {
         return synchronized(lock) {
@@ -21,15 +22,23 @@ object NotificationAuditState {
         }
     }
 
+    fun hasSnapshot(): Boolean {
+        return synchronized(lock) {
+            hasSnapshot
+        }
+    }
+
     fun clear() {
         synchronized(lock) {
             auditsByPackage = emptyMap()
+            hasSnapshot = false
         }
     }
 
     fun replace(nextAudits: Map<String, AppNotificationAudit>) {
         synchronized(lock) {
             auditsByPackage = nextAudits.toMap()
+            hasSnapshot = true
         }
     }
 }
