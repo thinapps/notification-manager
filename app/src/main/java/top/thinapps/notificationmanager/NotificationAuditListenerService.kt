@@ -2,13 +2,35 @@ package top.thinapps.notificationmanager
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.ComponentName
 import android.content.Intent
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 
 class NotificationAuditListenerService : NotificationListenerService() {
     override fun onListenerConnected() {
+        activeService = this
+        NotificationAuditState.markListenerConnected()
         refreshAudit()
+    }
+
+    override fun onListenerDisconnected() {
+        if (activeService === this) {
+            activeService = null
+        }
+        NotificationAuditState.markListenerDisconnected()
+        NotificationAuditState.clear()
+        broadcastAuditUpdated()
+        requestRebind(ComponentName(this, NotificationAuditListenerService::class.java))
+    }
+
+    override fun onDestroy() {
+        if (activeService === this) {
+            activeService = null
+            NotificationAuditState.markListenerDisconnected()
+            broadcastAuditUpdated()
+        }
+        super.onDestroy()
     }
 
     override fun onNotificationPosted(sbn: StatusBarNotification) {
@@ -23,8 +45,8 @@ class NotificationAuditListenerService : NotificationListenerService() {
         refreshAudit()
     }
 
-    private fun refreshAudit() {
-        try {
+    private fun refreshAudit(): Boolean {
+        return try {
             val rankingMap = currentRanking
             val nextAudits = getActiveNotifications()
                 ?.groupBy(StatusBarNotification::getPackageName)
@@ -36,11 +58,13 @@ class NotificationAuditListenerService : NotificationListenerService() {
                 }
 
             NotificationAuditState.replace(nextAudits)
+            broadcastAuditUpdated()
+            true
         } catch (_: RuntimeException) {
             NotificationAuditState.clear()
+            broadcastAuditUpdated()
+            false
         }
-
-        broadcastAuditUpdated()
     }
 
     private fun broadcastAuditUpdated() {
@@ -92,6 +116,12 @@ class NotificationAuditListenerService : NotificationListenerService() {
 
     companion object {
         const val ACTION_NOTIFICATION_AUDIT_UPDATED = "top.thinapps.notificationmanager.NOTIFICATION_AUDIT_UPDATED"
+        @Volatile private var activeService: NotificationAuditListenerService? = null
+
+        fun refreshActiveSnapshot(): Boolean {
+            return activeService?.refreshAudit() == true
+        }
+
         private const val LABEL_SOUND = "Sound"
         private const val LABEL_VIBRATE = "Vibrate"
         private const val LABEL_SILENT = "Silent"
