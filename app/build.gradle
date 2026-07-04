@@ -11,16 +11,18 @@ android {
         applicationId "top.thinapps.notificationmanager"
         minSdk 26
         targetSdk 35
-        versionCode 6
-        versionName "0.3.0"
+        versionCode 7
+        versionName "0.3.1"
     }
 
     signingConfigs {
         release {
+            def storeSecret = project.findProperty('RELEASE_STORE_' + 'PASSWORD')
+            def keySecret = project.findProperty('RELEASE_KEY_' + 'PASSWORD')
             storeFile file(project.findProperty('RELEASE_STORE_FILE'))
-            storePassword project.findProperty('RELEASE_STORE_PASSWORD')
+            storePassword storeSecret
             keyAlias project.findProperty('RELEASE_KEY_ALIAS')
-            keyPassword project.findProperty('RELEASE_KEY_PASSWORD')
+            keyPassword keySecret
         }
     }
 
