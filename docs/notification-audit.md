@@ -35,6 +35,10 @@ The app should not:
 - use accessibility services to work around Android boundaries
 - change another app's channels or settings directly
 
+## Future Consideration
+
+The app currently refreshes visible audit rows when the main screen is created or resumed and when the app list is re-rendered. A future patch may add a lightweight live refresh while the main screen remains open, but only if testing shows the audit rows feel stale. This is a UX polish consideration, not a required Android best practice.
+
 ## Android Behavior Notes
 
 Android notification channels define interruption behavior such as sound, vibration, silent display, and blocked alerts. Users can change channel behavior in Android settings.
