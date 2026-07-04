@@ -62,7 +62,8 @@ class NotificationAuditListenerService : NotificationListenerService() {
                     AppNotificationAudit(
                         label = strongest.label,
                         detail = strongest.detail,
-                        activeCount = entry.value.size
+                        activeCount = entry.value.size,
+                        otherStates = summarizeOtherStates(strongest, classifications)
                     )
                 }
 
@@ -141,6 +142,28 @@ class NotificationAuditListenerService : NotificationListenerService() {
         }
     }
 
+    private fun summarizeOtherStates(
+        strongest: NotificationAuditClassification,
+        classifications: List<NotificationAuditClassification>
+    ): String {
+        return classifications
+            .filterNot { classification ->
+                classification.label == strongest.label && classification.detail == strongest.detail
+            }
+            .groupingBy { classification ->
+                classification.shortSummary
+            }
+            .eachCount()
+            .entries
+            .sortedWith(
+                compareByDescending<Map.Entry<String, Int>> { entry -> entry.value }
+                    .thenBy { entry -> entry.key }
+            )
+            .joinToString(separator = ", ") { entry ->
+                if (entry.value == 1) entry.key else "${entry.key} x${entry.value}"
+            }
+    }
+
     private fun importanceLabel(importance: Int): String {
         return when (importance) {
             NotificationManager.IMPORTANCE_NONE -> "Blocked"
@@ -167,7 +190,10 @@ class NotificationAuditListenerService : NotificationListenerService() {
     private data class NotificationAuditClassification(
         val label: String,
         val detail: String
-    )
+    ) {
+        val shortSummary: String
+            get() = "$label - $detail"
+    }
 
     companion object {
         const val ACTION_NOTIFICATION_AUDIT_UPDATED = "top.thinapps.notificationmanager.NOTIFICATION_AUDIT_UPDATED"
