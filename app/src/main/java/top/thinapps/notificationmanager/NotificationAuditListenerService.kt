@@ -21,7 +21,7 @@ class NotificationAuditListenerService : NotificationListenerService() {
         NotificationAuditState.markListenerDisconnected()
         NotificationAuditState.clear()
         broadcastAuditUpdated()
-        requestRebind(ComponentName(this, NotificationAuditListenerService::class.java))
+        NotificationListenerService.requestRebind(ComponentName(this, NotificationAuditListenerService::class.java))
     }
 
     override fun onDestroy() {
