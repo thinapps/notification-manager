@@ -2,20 +2,27 @@
 
 Privacy-friendly Android utility for reviewing device notification status and app notification settings in one place.
 
-The app is intended as a notification settings overview, not a notification content reader or background notification controller.
+The app is intended as a notification settings overview with an optional local notification audit mode, not a notification content reader or background notification controller.
 
 ## Documentation
 
 | Document | Description |
 | --- | --- |
 | [Build](docs/build.md) | Explains the basic Gradle project, release workflow, signing, and R8 choices. |
-| [Scope](docs/scope.md) | Defines the settings-helper product scope and what the app should not attempt to do. |
+| [Scope](docs/scope.md) | Defines the settings-helper and optional audit product scope. |
 | [Android Device Status](docs/android-device-status.md) | Explains sound mode, Do Not Disturb, volume streams, and why the app keeps them read-only. |
+| [Notification Audit](docs/notification-audit.md) | Explains the optional local-only active notification behavior audit. |
 | [Privacy](docs/privacy.md) | Explains the local-only privacy model and notification-content boundaries. |
-| [Permissions](docs/permissions.md) | Explains the no-sensitive-permissions setup and future permission review rules. |
+| [Permissions](docs/permissions.md) | Explains the permission setup and future permission review rules. |
 | [Settings Links](docs/settings-links.md) | Explains the Android system settings deep-link approach. |
 
 ## Changelog
+
+### 0.3.0
+- added an optional local notification audit service for active visible notifications after the user enables Android notification access
+- added a notification audit card with a link to Android notification access settings
+- shows per-app active notification behavior as Sound, Vibrate, Silent, None, or Unknown when audit access is enabled
+- keeps notification audit data in memory only and does not store notification text
 
 ### 0.2.3
 - extended the device status divider lines so they align with the row text edges
