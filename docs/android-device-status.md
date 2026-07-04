@@ -1,6 +1,6 @@
 # Android Device Status
 
-Notification Manager shows a small read-only device status section because Android has several global controls that sound similar but do different things.
+Notification Manager shows small read-only status sections because Android has several global controls that sound similar but do different things.
 
 This document explains the concepts so future app changes stay clear, restrained, and privacy-friendly.
 
@@ -25,7 +25,7 @@ Reference: https://developer.android.com/reference/android/media/AudioManager
 
 ## Do Not Disturb
 
-Do Not Disturb is separate from sound mode.
+Do Not Disturb is separate from sound mode and has its own top section in the app.
 
 Android exposes it as the current notification interruption filter through `NotificationManager.getCurrentInterruptionFilter()`.
 
@@ -64,9 +64,11 @@ Keypad tone volume maps to Android's DTMF stream. It is labeled in plain English
 
 Assistant volume is not included because `AudioManager.STREAM_ASSISTANT` is newer than this app's current compile SDK target. Fixed-volume-policy status is intentionally saved for a later version.
 
-## Device Status Layout
+## Status Layout
 
-Device status rows use a simple label and value layout. Labels stay on the left and values are right-aligned so percentages and raw stream values are easier to scan.
+Do Not Disturb has its own top card with a read-only current mode row and a Do Not Disturb settings button.
+
+The device status card stays focused on sound mode and volume rows. Rows use a simple label and value layout. Labels stay on the left and values are right-aligned so percentages and raw stream values are easier to scan.
 
 Labels use normal-weight secondary text so they stay quiet. Values use primary medium-weight text so the current state is easier to read without making the card feel heavy.
 
@@ -74,12 +76,13 @@ Rows are separated by subtle divider lines aligned to the status text width. The
 
 ## Settings Links
 
-The device status text rows are informational only and are not clickable.
+The status text rows are informational only and are not clickable.
 
-The card includes three stacked settings buttons:
+The Do Not Disturb card includes a Do Not Disturb settings button that opens Android DND / Modes settings via `android.settings.ZEN_MODE_SETTINGS`, falling back to notification settings if unavailable.
+
+The device status card includes two stacked settings buttons:
 
 - Sound & volume settings opens Android sound settings via `android.settings.SOUND_SETTINGS`
-- Do Not Disturb settings opens Android DND / Modes settings via `android.settings.ZEN_MODE_SETTINGS`, falling back to notification settings if unavailable
 - System notification settings opens Android notification settings via `android.settings.NOTIFICATION_SETTINGS`
 
 Android does not expose reliable public deep links to each individual OEM volume slider. The app uses the closest stable public settings destination instead of private or OEM-specific sub-settings.
