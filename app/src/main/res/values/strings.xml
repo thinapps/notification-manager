@@ -2,8 +2,10 @@
 <resources>
     <string name="app_name">Notification Manager</string>
     <string name="home_summary">Review device notification status and open Android notification settings in one place.</string>
+    <string name="do_not_disturb_title">Do Not Disturb</string>
+    <string name="do_not_disturb_summary">Read-only Android Do Not Disturb status.</string>
     <string name="device_status_title">Device status</string>
-    <string name="device_status_summary">Read-only Android sound, volume, and Do Not Disturb status.</string>
+    <string name="device_status_summary">Read-only Android sound and volume status.</string>
     <string name="notification_audit_service_name">Notification Manager audit</string>
     <string name="notification_audit_title">Notification audit</string>
     <string name="notification_audit_disabled_summary">Optional. Enable Android notification access to estimate active notification behavior by app. Notification text is not stored.</string>
@@ -15,7 +17,7 @@
     <string name="audit_waiting_for_results">Audit: waiting for active notification data</string>
     <string name="audit_no_active_notifications">Audit: no active notification</string>
     <string name="status_sound_mode_label">Sound mode</string>
-    <string name="status_do_not_disturb_label">Do Not Disturb</string>
+    <string name="status_do_not_disturb_label">Current mode</string>
     <string name="status_ring_volume_label">Ring volume</string>
     <string name="status_notification_volume_label">Notification volume</string>
     <string name="status_alarm_volume_label">Alarm volume</string>
