@@ -24,6 +24,8 @@ The value is based on active visible notification records and Android ranking/ch
 
 Audit summaries include the strongest active behavior found for that app, the active notification count, and the most useful evidence Android exposed, such as channel importance or whether sound/vibration was configured.
 
+When an app has mixed active notification states, the summary keeps the strongest state first and adds the other exposed states after `also`.
+
 `Alerting` means Android exposed alert-level importance but did not expose sound or vibration details for the active notification. This is more accurate than blindly calling the notification `Sound`.
 
 Apps with no active visible notification should remain `no active notification` or `Unknown` rather than being guessed.
