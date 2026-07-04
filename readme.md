@@ -24,6 +24,8 @@ The app is intended as a notification settings overview with an optional local n
 - requests listener rebind only when audit access is enabled but the listener is not connected
 - reports richer audit evidence, including channel importance and exposed sound/vibration configuration
 - uses Alerting when Android exposes alert-level importance without exposing sound or vibration details
+- summarizes mixed active notification states instead of only showing the strongest active state
+- moves Do Not Disturb into its own top section with its own settings button
 
 ### 0.3.1
 - refreshes visible audit rows from listener updates after Android connects the audit service or notification state changes
