@@ -192,7 +192,7 @@ class NotificationAuditListenerService : NotificationListenerService() {
         val detail: String
     ) {
         val shortSummary: String
-            get() = "$label - $detail"
+            get() = "Channel: $label - $detail"
     }
 
     companion object {
