@@ -10,7 +10,7 @@ data class AppNotificationAudit(
         get() {
             val activeText = if (activeCount == 1) "1 active" else "$activeCount active"
             val mixedText = if (otherStates.isBlank()) "" else "; also $otherStates"
-            return "Audit: $label - $detail$mixedText ($activeText)"
+            return "Audit: Channel: $label - $detail$mixedText; Device: not verified ($activeText)"
         }
 }
 
