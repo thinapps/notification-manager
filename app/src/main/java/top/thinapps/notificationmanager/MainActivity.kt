@@ -1,7 +1,6 @@
 package top.thinapps.notificationmanager
 
 import android.app.Activity
-import android.app.NotificationManager
 import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
@@ -11,6 +10,7 @@ import android.content.pm.PackageManager
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.service.notification.NotificationListenerService
 import android.text.Editable
 import android.text.TextWatcher
@@ -242,24 +242,23 @@ class MainActivity : Activity() {
             textSize = resources.getDimension(R.dimen.package_text_size) / resources.displayMetrics.scaledDensity
         })
 
-        if (auditEnabled) {
-            row.addView(TextView(this).apply {
-                text = when {
-                    !listenerConnected -> getString(R.string.audit_waiting_for_listener)
-                    !auditSnapshotLoaded -> getString(R.string.audit_waiting_for_results)
-                    audit != null -> audit.summary
-                    else -> getString(R.string.audit_no_active_notifications)
-                }
-                setTextColor(getColor(R.color.text_secondary))
-                textSize = resources.getDimension(R.dimen.package_text_size) / resources.displayMetrics.scaledDensity
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    topMargin = resources.getDimensionPixelSize(R.dimen.space_small)
-                }
-            })
-        }
+        row.addView(TextView(this).apply {
+            text = when {
+                !auditEnabled -> getString(R.string.audit_disabled)
+                !listenerConnected -> getString(R.string.audit_waiting_for_listener)
+                !auditSnapshotLoaded -> getString(R.string.audit_waiting_for_results)
+                audit != null -> audit.summary
+                else -> getString(R.string.audit_no_active_notifications)
+            }
+            setTextColor(getColor(R.color.text_secondary))
+            textSize = resources.getDimension(R.dimen.package_text_size) / resources.displayMetrics.scaledDensity
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                topMargin = resources.getDimensionPixelSize(R.dimen.space_small)
+            }
+        })
 
         row.addView(createButtonRow(app))
 
@@ -348,16 +347,22 @@ class MainActivity : Activity() {
     }
 
     private fun isNotificationAuditEnabled(): Boolean {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O_MR1) {
-            return false
-        }
-
-        val notificationManager = getSystemService(NotificationManager::class.java)
         val component = ComponentName(this, NotificationAuditListenerService::class.java)
-        return notificationManager.isNotificationListenerAccessGranted(component)
+        val enabledListeners = Settings.Secure.getString(contentResolver, ENABLED_NOTIFICATION_LISTENERS)
+            ?: return false
+
+        return enabledListeners.split(':').any { flattenedComponent ->
+            ComponentName.unflattenFromString(flattenedComponent)?.let { enabledComponent ->
+                enabledComponent.packageName == packageName && enabledComponent.className == component.className
+            } == true
+        }
     }
 
     private fun View.performButtonHaptic() {
         performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+    }
+
+    private companion object {
+        private const val ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners"
     }
 }
