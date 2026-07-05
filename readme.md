@@ -18,6 +18,11 @@ The app is intended as a notification settings overview with an optional local n
 
 ## Changelog
 
+### 0.3.3
+- always shows an audit status line on app rows so disabled, waiting, and active states are visible
+- checks Android's enabled notification listener list when deciding whether audit access is enabled
+- qualifies the notification listener rebind call from the listener service
+
 ### 0.3.2
 - tracks whether Android has connected the notification audit listener after access is enabled
 - refreshes the audit snapshot directly from the connected listener when the main screen resumes
@@ -26,8 +31,6 @@ The app is intended as a notification settings overview with an optional local n
 - uses Alerting when Android exposes alert-level importance without exposing sound or vibration details
 - summarizes mixed active notification states instead of only showing the strongest active state
 - separates channel evidence from actual device result by labeling device output as not verified
-- always shows an audit status line on app rows so disabled, waiting, and active states are visible
-- checks Android's enabled notification listener list when deciding whether audit access is enabled
 - moves Do Not Disturb into its own top section with its own settings button
 
 ### 0.3.1
