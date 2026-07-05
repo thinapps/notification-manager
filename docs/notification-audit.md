@@ -10,7 +10,15 @@ Audit mode may use Android notification access only after the user enables it in
 
 ## What It Shows
 
-When enabled, audit mode can show active app channel/ranking evidence as:
+Every app row shows an audit status line so the state is explicit:
+
+- `disabled` when notification access is not enabled
+- `waiting for listener connection` when access is enabled but Android has not connected the listener
+- `waiting for active notification data` when the listener is connected but no snapshot has returned yet
+- `no active notification` when a snapshot exists but that app has no active visible notification
+- channel/ranking evidence when that app has active visible notifications
+
+When enabled and active data exists, audit mode can show active app channel/ranking evidence as:
 
 - `Sound + vibrate`
 - `Sound`
@@ -35,6 +43,8 @@ Apps with no active visible notification should remain `no active notification` 
 ## Refresh Behavior
 
 When notification access is enabled, the main screen checks whether Android has connected the notification audit listener.
+
+The main screen checks Android's enabled notification listener list when deciding whether notification access is enabled. This keeps disabled, waiting, and active audit row states visible instead of hiding audit rows entirely.
 
 If the listener is connected, the main screen asks the active listener instance to refresh its in-memory snapshot when the main screen resumes. This avoids depending only on listener push events.
 
