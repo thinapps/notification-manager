@@ -18,6 +18,12 @@ The app is intended as a notification settings overview with an optional local n
 
 ## Changelog
 
+### 0.3.4
+- adds an audit trace line to the notification audit card with active notification count, active package count, sample package names, and last refresh status
+- captures trace counts directly from Android's active notification snapshot before grouping by package
+- preserves explicit disabled, waiting, no-active, and active app-row audit states
+- trims enabled notification listener entries before matching the audit listener component
+
 ### 0.3.3
 - always shows an audit status line on app rows so disabled, waiting, and active states are visible
 - checks Android's enabled notification listener list when deciding whether audit access is enabled
