@@ -18,6 +18,10 @@ Every app row shows an audit status line so the state is explicit:
 - `no active notification` when a snapshot exists but that app has no active visible notification
 - channel/ranking evidence when that app has active visible notifications
 
+The audit card also shows a trace line with the active notification count returned by Android, the active package count after grouping that snapshot, a short sample of active package names, and the last refresh status.
+
+This trace is local and plain so test builds can distinguish between Android returning zero active notifications and Android returning active packages that do not match the visible app rows.
+
 When enabled and active data exists, audit mode can show active app channel/ranking evidence as:
 
 - `Sound + vibrate`
@@ -60,14 +64,7 @@ Before Android connects the listener or returns the first audit snapshot, the UI
 
 Audit mode should stay local-only.
 
-The app should not:
-
-- store message text
-- upload app alert data
-- sync app alert data
-- sell or share derived data
-- use accessibility services to work around Android boundaries
-- change another app's channels or settings directly
+The app should not store notification message text, upload audit data, sync audit data, use accessibility services to work around Android boundaries, or change another app's channels or settings directly.
 
 ## Android Behavior Notes
 
