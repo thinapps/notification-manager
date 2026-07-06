@@ -19,7 +19,7 @@ class NotificationAuditListenerService : NotificationListenerService() {
             activeService = null
         }
         NotificationAuditState.markListenerDisconnected()
-        NotificationAuditState.clear()
+        NotificationAuditState.clear(lastRefreshStatus = "listener disconnected")
         broadcastAuditUpdated()
         NotificationListenerService.requestRebind(ComponentName(this, NotificationAuditListenerService::class.java))
     }
@@ -48,30 +48,33 @@ class NotificationAuditListenerService : NotificationListenerService() {
     private fun refreshAudit(): Boolean {
         return try {
             val rankingMap = currentRanking
-            val nextAudits = getActiveNotifications()
-                ?.groupBy(StatusBarNotification::getPackageName)
-                .orEmpty()
-                .mapValues { entry ->
-                    val classifications = entry.value.map { classify(it, rankingMap) }
-                    val strongest = classifications.maxByOrNull { classification ->
-                        rankLabel(classification.label)
-                    } ?: NotificationAuditClassification(
-                        label = LABEL_UNKNOWN,
-                        detail = DETAIL_NO_RANKING_DATA
-                    )
-                    AppNotificationAudit(
-                        label = strongest.label,
-                        detail = strongest.detail,
-                        activeCount = entry.value.size,
-                        otherStates = summarizeOtherStates(strongest, classifications)
-                    )
-                }
+            val activeNotifications = getActiveNotifications()?.toList().orEmpty()
+            val groupedNotifications = activeNotifications.groupBy(StatusBarNotification::getPackageName)
+            val nextAudits = groupedNotifications.mapValues { entry ->
+                val classifications = entry.value.map { classify(it, rankingMap) }
+                val strongest = classifications.maxByOrNull { classification ->
+                    rankLabel(classification.label)
+                } ?: NotificationAuditClassification(
+                    label = LABEL_UNKNOWN,
+                    detail = DETAIL_NO_RANKING_DATA
+                )
+                AppNotificationAudit(
+                    label = strongest.label,
+                    detail = strongest.detail,
+                    activeCount = entry.value.size,
+                    otherStates = summarizeOtherStates(strongest, classifications)
+                )
+            }
 
-            NotificationAuditState.replace(nextAudits)
+            NotificationAuditState.replace(
+                nextAudits = nextAudits,
+                activeNotificationCount = activeNotifications.size,
+                activePackages = groupedNotifications.keys
+            )
             broadcastAuditUpdated()
             true
         } catch (_: RuntimeException) {
-            NotificationAuditState.clear()
+            NotificationAuditState.clear(lastRefreshStatus = "refresh failed")
             broadcastAuditUpdated()
             false
         }
