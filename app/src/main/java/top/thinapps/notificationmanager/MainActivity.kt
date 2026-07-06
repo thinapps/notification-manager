@@ -152,12 +152,13 @@ class MainActivity : Activity() {
     }
 
     private fun renderNotificationAuditStatus() {
-        notificationAuditSummaryText.text = when {
+        val statusText = when {
             !isNotificationAuditEnabled() -> getString(R.string.notification_audit_disabled_summary)
             !NotificationAuditState.isListenerConnected() -> getString(R.string.notification_audit_connecting_summary)
             !NotificationAuditState.hasSnapshot() -> getString(R.string.notification_audit_waiting_summary)
             else -> getString(R.string.notification_audit_enabled_summary)
         }
+        notificationAuditSummaryText.text = "$statusText\n${NotificationAuditState.trace().summary}"
     }
 
     private fun setupSearch() {
@@ -307,7 +308,7 @@ class MainActivity : Activity() {
 
     private fun refreshNotificationAuditSnapshotIfPossible() {
         if (!isNotificationAuditEnabled()) {
-            NotificationAuditState.clear()
+            NotificationAuditState.clear(lastRefreshStatus = "access disabled")
             return
         }
 
@@ -352,7 +353,7 @@ class MainActivity : Activity() {
             ?: return false
 
         return enabledListeners.split(':').any { flattenedComponent ->
-            ComponentName.unflattenFromString(flattenedComponent)?.let { enabledComponent ->
+            ComponentName.unflattenFromString(flattenedComponent.trim())?.let { enabledComponent ->
                 enabledComponent.packageName == packageName && enabledComponent.className == component.className
             } == true
         }
