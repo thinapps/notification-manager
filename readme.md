@@ -18,6 +18,12 @@ The app is intended as a notification settings overview with an optional local n
 
 ## Changelog
 
+### 0.3.5
+- adds Android-exposed active notification packages to the app list, including non-launcher packages when audit access is enabled and active data exists
+- shows apps/packages with active visible notifications before inactive launchable apps
+- resolves active notification package labels through Android PackageManager with package-name fallback
+- clarifies no-active rows as no active visible notification exposed instead of implying inactive channel settings were inspected
+
 ### 0.3.4
 - adds an audit trace line to the notification audit card with active notification count, active package count, sample package names, and last refresh status
 - captures trace counts directly from Android's active notification snapshot before grouping by package
