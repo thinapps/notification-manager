@@ -15,8 +15,12 @@ Every app row shows an audit status line so the state is explicit:
 - `disabled` when notification access is not enabled
 - `waiting for listener connection` when access is enabled but Android has not connected the listener
 - `waiting for active notification data` when the listener is connected but no snapshot has returned yet
-- `no active notification` when a snapshot exists but that app has no active visible notification
-- channel/ranking evidence when that app has active visible notifications
+- `no active visible notification exposed` when a snapshot exists but that app/package has no active visible notification exposed by Android
+- channel/ranking evidence when that app/package has active visible notifications
+
+When Android exposes active visible notifications, those active packages are added to the list and shown first, even if they are not normal launcher apps. This is important because system apps, services, carrier apps, or other non-launcher packages can own active notifications.
+
+The app resolves active package labels through Android PackageManager when possible. If Android does not return a label, the package name is shown as the fallback so the active notification package is still visible.
 
 The audit card also shows a trace line with the active notification count returned by Android, the active package count after grouping that snapshot, a short sample of active package names, and the last refresh status.
 
@@ -42,7 +46,7 @@ When an app has mixed active notification states, the summary keeps the stronges
 
 `Alerting` means Android exposed alert-level importance but did not expose sound or vibration details for the active notification. This is more accurate than blindly calling the notification `Sound`.
 
-Apps with no active visible notification should remain `no active notification` or `Unknown` rather than being guessed.
+Apps/packages with no active visible notification should remain `no active visible notification exposed` or `Unknown` rather than being guessed.
 
 ## Refresh Behavior
 
@@ -56,9 +60,9 @@ If audit access is enabled but the listener is not connected, the main screen en
 
 The listener refreshes the in-memory audit snapshot when Android connects it, when a visible notification is posted or removed, and when Android sends ranking updates.
 
-The main screen listens for local audit update broadcasts while visible, then refreshes the audit card and currently visible app rows. This avoids stale `no active notification` rows after returning from Android notification access settings.
+The main screen listens for local audit update broadcasts while visible, then refreshes the audit card and currently visible app rows. This avoids stale `no active visible notification exposed` rows after returning from Android notification access settings.
 
-Before Android connects the listener or returns the first audit snapshot, the UI should show a waiting state instead of treating every app as having no active notification.
+Before Android connects the listener or returns the first audit snapshot, the UI should show a waiting state instead of treating every app as having no active visible notification exposed.
 
 ## Data Boundaries
 
