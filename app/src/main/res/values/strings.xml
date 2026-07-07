@@ -11,12 +11,12 @@
     <string name="notification_audit_disabled_summary">Optional. Enable Android notification access to estimate active notification behavior by app. Notification text is not stored.</string>
     <string name="notification_audit_connecting_summary">Enabled. Waiting for Android to connect the notification audit listener.</string>
     <string name="notification_audit_waiting_summary">Enabled. Waiting for Android to return active notification data.</string>
-    <string name="notification_audit_enabled_summary">Enabled. Showing behavior for apps with active visible notifications. Apps with no active notification remain unknown.</string>
+    <string name="notification_audit_enabled_summary">Enabled. Apps with active visible notifications are shown first, including non-launcher packages when Android exposes them. Other apps remain unknown unless active.</string>
     <string name="open_notification_access_settings">Notification access settings</string>
     <string name="audit_disabled">Audit: disabled - enable notification access</string>
     <string name="audit_waiting_for_listener">Audit: waiting for listener connection</string>
     <string name="audit_waiting_for_results">Audit: waiting for active notification data</string>
-    <string name="audit_no_active_notifications">Audit: no active notification</string>
+    <string name="audit_no_active_notifications">Audit: no active visible notification exposed</string>
     <string name="status_sound_mode_label">Sound mode</string>
     <string name="status_do_not_disturb_label">Current mode</string>
     <string name="status_ring_volume_label">Ring volume</string>
@@ -31,7 +31,7 @@
     <string name="open_do_not_disturb_settings">Do Not Disturb settings</string>
     <string name="search_apps_hint">Search apps</string>
     <string name="open_system_notifications">System notification settings</string>
-    <string name="no_apps_found">No launchable apps were found.</string>
+    <string name="no_apps_found">No apps were found.</string>
     <string name="no_matching_apps">No matching apps were found.</string>
     <string name="open_notification_settings">Notification settings</string>
     <string name="open_app_info">App info</string>
