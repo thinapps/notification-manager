@@ -1,6 +1,7 @@
 package top.thinapps.notificationmanager
 
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.os.Build
@@ -23,6 +24,37 @@ class InstalledAppsRepository(
             }
             .distinctBy { app -> app.packageName }
             .sortedBy { app -> app.label.lowercase(Locale.ROOT) }
+    }
+
+    fun getAppEntry(packageName: String): AppEntry {
+        return AppEntry(
+            label = resolveApplicationLabel(packageName),
+            packageName = packageName
+        )
+    }
+
+    private fun resolveApplicationLabel(packageName: String): String {
+        return try {
+            getApplicationInfo(packageName)
+                .loadLabel(packageManager)
+                .toString()
+        } catch (_: PackageManager.NameNotFoundException) {
+            packageName
+        } catch (_: RuntimeException) {
+            packageName
+        }
+    }
+
+    private fun getApplicationInfo(packageName: String): ApplicationInfo {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            packageManager.getApplicationInfo(
+                packageName,
+                PackageManager.ApplicationInfoFlags.of(0)
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            packageManager.getApplicationInfo(packageName, 0)
+        }
     }
 
     private fun queryLauncherActivities(intent: Intent): List<ResolveInfo> {
