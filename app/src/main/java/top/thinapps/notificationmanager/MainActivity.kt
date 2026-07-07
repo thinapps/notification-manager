@@ -43,7 +43,7 @@ class MainActivity : Activity() {
         setupSearch()
         renderDeviceStatus()
         renderNotificationAuditStatus()
-        renderApps(allApps)
+        renderApps()
     }
 
     override fun onStart() {
@@ -165,26 +165,26 @@ class MainActivity : Activity() {
         findViewById<EditText>(R.id.searchInput).addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                renderApps(filterApps(s?.toString().orEmpty()))
+                renderApps()
             }
 
             override fun afterTextChanged(s: Editable?) = Unit
         })
     }
 
-    private fun filterApps(query: String): List<AppEntry> {
+    private fun filterApps(apps: List<AppEntry>, query: String): List<AppEntry> {
         val normalizedQuery = query.trim().lowercase(Locale.ROOT)
         if (normalizedQuery.isEmpty()) {
-            return allApps
+            return apps
         }
 
-        return allApps.filter { app ->
+        return apps.filter { app ->
             app.label.lowercase(Locale.ROOT).contains(normalizedQuery) ||
                 app.packageName.lowercase(Locale.ROOT).contains(normalizedQuery)
         }
     }
 
-    private fun renderApps(apps: List<AppEntry>) {
+    private fun renderApps() {
         val appList = findViewById<LinearLayout>(R.id.appList)
         val countText = findViewById<TextView>(R.id.countText)
         val emptyText = findViewById<TextView>(R.id.emptyText)
@@ -192,9 +192,14 @@ class MainActivity : Activity() {
         val auditSnapshotLoaded = NotificationAuditState.hasSnapshot()
         val listenerConnected = NotificationAuditState.isListenerConnected()
         val auditSnapshot = NotificationAuditState.snapshot()
+        val displayApps = buildDisplayApps(auditSnapshot)
+        val apps = filterApps(
+            apps = displayApps,
+            query = findViewById<EditText>(R.id.searchInput).text?.toString().orEmpty()
+        )
 
         countText.text = resources.getQuantityString(R.plurals.app_count, apps.size, apps.size)
-        emptyText.text = if (allApps.isEmpty()) {
+        emptyText.text = if (displayApps.isEmpty()) {
             getString(R.string.no_apps_found)
         } else {
             getString(R.string.no_matching_apps)
@@ -205,6 +210,29 @@ class MainActivity : Activity() {
         apps.forEach { app ->
             appList.addView(createAppRow(app, auditEnabled, listenerConnected, auditSnapshotLoaded, auditSnapshot[app.packageName]))
         }
+    }
+
+    private fun buildDisplayApps(auditSnapshot: Map<String, AppNotificationAudit>): List<AppEntry> {
+        if (auditSnapshot.isEmpty()) {
+            return allApps
+        }
+
+        val launcherAppsByPackage = allApps.associateBy { app -> app.packageName }
+        val activeApps = auditSnapshot.keys.map { packageName ->
+            launcherAppsByPackage[packageName] ?: appsRepository.getAppEntry(packageName)
+        }
+        val inactiveLaunchableApps = allApps.filterNot { app -> auditSnapshot.containsKey(app.packageName) }
+
+        return sortApps(activeApps) + inactiveLaunchableApps
+    }
+
+    private fun sortApps(apps: List<AppEntry>): List<AppEntry> {
+        return apps
+            .distinctBy { app -> app.packageName }
+            .sortedWith(
+                compareBy<AppEntry> { app -> app.label.lowercase(Locale.ROOT) }
+                    .thenBy { app -> app.packageName }
+            )
     }
 
     private fun createAppRow(
@@ -319,7 +347,7 @@ class MainActivity : Activity() {
 
     private fun refreshNotificationAuditUi() {
         renderNotificationAuditStatus()
-        renderApps(filterApps(findViewById<EditText>(R.id.searchInput).text?.toString().orEmpty()))
+        renderApps()
     }
 
     private fun requestNotificationAuditRebindIfNeeded() {
